@@ -1,0 +1,31 @@
+.search-input{
+  margin: 0 10px 0 10px;
+  border: black 1px solid;
+}
+
+.search-icon{
+  margin:0 5px 0 5px;
+}
+
+.search-input input{
+
+  font-size: 1rem;
+
+}
+
+::-webkit-input-placeholder {
+  color: grey;
+  font-size: 1rem;
+}
+::-moz-placeholder {
+  color: grey;
+  font-size: 1rem;
+}
+:-ms-input-placeholder {
+  color: grey;
+  font-size: 1rem;
+}
+::placeholder {
+  color: grey;
+  font-size: 1rem;
+}
