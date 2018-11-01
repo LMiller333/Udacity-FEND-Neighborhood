@@ -3,7 +3,8 @@ import React, { Component } from 'react';
  class Listing extends Component {
   render() {
     return (
-      <li>{this.props.name}</li>
+      <li className="listing"><h2>{this.props.name}</h2>
+      <p>{this.props.sex},{this.props.breed}</p></li>
     )
   }
 }

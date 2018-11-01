@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Listing from '../Listing/Listing.js';
+import Listing from '../components/Listing.js';
 
 class List extends Component {
   render() {
@@ -7,12 +7,14 @@ class List extends Component {
         <Listing
             name={cat.name}
             key={cat.name}
+            breed={cat.breed}
+            sex={cat.sex}
           />
     );
 
     return (
       <div className="list">
-        This is the list component.
+        Cats
         {listings}
       </div>
     )

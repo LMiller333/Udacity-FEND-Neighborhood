@@ -3,37 +3,56 @@
     "cats": [
       {
         "name": "Mimo",
+        "breed":"Tabby",
+        "sex":"M",
         "position": {
-          "lat": 42.263160,
-          "lng": -83.739450
+          "lat": 42.264200,
+          "lng": -83.738450
         }
       },
       {
         "name": "Tuco",
+        "breed":"Tabby",
+        "sex":"M",
         "position": {
-          "lat": 42.263160,
-          "lng": -83.739450
+          "lat": 42.262190,
+          "lng": -83.738420
         }
       },
       {
         "name": "Varona",
+        "breed":"Calico",
+        "sex":"F",
         "position": {
-          "lat": 42.263160,
-          "lng": -83.739450
+          "lat": 42.264180,
+          "lng": -83.739500
         }
       },
       {
         "name": "Irwin",
+        "breed":"Domestic Shorthair",
+        "sex":"M",
         "position": {
-          "lat":  42.263290,
-          "lng": -83.739460
+          "lat":  42.263240,
+          "lng": -83.736420
         }
       },
       {
-        "name": "Orange Outdoor Cat",
+        "name": "Josie",
+        "breed":"Tortoiseshell",
+        "sex":"F",
         "position": {
-          "lat": 42.262945,
-          "lng": -83.739007
+          "lat":  42.263210,
+          "lng": -83.739470
+        }
+      },
+      {
+        "name": "Walter",
+        "breed":"Domestic Longhair",
+        "sex":"M",
+        "position": {
+          "lat": 42.261945,
+          "lng": -83.741500
         }
       }
     ]

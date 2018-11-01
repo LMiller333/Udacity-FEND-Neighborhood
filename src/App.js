@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './components/Search/Search.js';
-import List from './components/List/List.js';
-import MapContainer from './components/MapContainer/MapContainer.js';
+import Search from './components/Search';
+import List from './components/List.js';
+import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
 
 class App extends Component {
@@ -19,7 +19,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <div className="navbar">Navbar</div>
           <Search/>
           <List markers={this.state.markers}/>
           <MapContainer markers={this.state.markers}/>

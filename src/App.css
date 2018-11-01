@@ -1,38 +1,27 @@
-.App {
-  display:grid;
-  height:100vh;
-  grid-template-columns: 35% 65%;
-  grid-template-rows: 50px 50px auto;
-  grid-template-areas: 
-    "navbar navbar"
-    "search search"
-    "list map";
+.list{
+  float:left;
+  width:40%;
 }
 
-.navbar {
-  grid-area: navbar;
-}
-.search {
-  grid-area: search;
+.mapcontainer{
+  float:right;
+  width:60%;
 }
 
-.list {
-  grid-area: list;
-  background:pink;
-}
-.mapcontainer {
-  grid-area: map;
-  background:purple;
+.navbar{
+  background: black;
 }
 
-@media (max-width: 760px) { 
-  .App {
-    grid-template-columns: 100%;
-    grid-template-rows: 50px 50px 300px 300px;
-    grid-template-areas: 
-      "navbar"
-      "search"
-      "map"
-      "list";
-  }
- }
+.listing{
+  list-style-type:none;
+  margin:1rem;
+  border-bottom:1px solid black;
+}
+
+h2{
+  margin:0;
+}
+
+p{
+  margin:0;
+}
