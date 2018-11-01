@@ -1,0 +1,41 @@
+
+{
+    "cats": [
+      {
+        "name": "Mimo",
+        "position": {
+          "lat": 42.263160,
+          "lng": -83.739450
+        }
+      },
+      {
+        "name": "Tuco",
+        "position": {
+          "lat": 42.263160,
+          "lng": -83.739450
+        }
+      },
+      {
+        "name": "Varona",
+        "position": {
+          "lat": 42.263160,
+          "lng": -83.739450
+        }
+      },
+      {
+        "name": "Irwin",
+        "position": {
+          "lat":  42.263290,
+          "lng": -83.739460
+        }
+      },
+      {
+        "name": "Orange Outdoor Cat",
+        "position": {
+          "lat": 42.262945,
+          "lng": -83.739007
+        }
+      }
+    ]
+  }
+

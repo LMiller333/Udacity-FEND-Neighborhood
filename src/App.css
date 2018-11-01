@@ -20,7 +20,7 @@
   grid-area: list;
   background:pink;
 }
-.map {
+.mapcontainer {
   grid-area: map;
   background:purple;
 }

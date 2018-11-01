@@ -3,9 +3,7 @@ import React, { Component } from 'react';
  class Listing extends Component {
   render() {
     return (
-      <div className="listing">
-        This is the listing component.
-      </div>
+      <li>{this.props.name}</li>
     )
   }
 }

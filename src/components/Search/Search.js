@@ -16,7 +16,6 @@ class Search extends Component {
           <input type="text" placeholder="Search for a place"/>
           {/* TODO: Add value this.props.query and onclick event */}
         </label>
-          
         </div>
       </div>
     )
