@@ -1,57 +1,104 @@
-import React, { Component } from 'react';
-import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
- 
+import React, {
+    Component
+} from 'react';
+import {
+    Map,
+    Marker,
+    InfoWindow,
+    GoogleApiWrapper
+} from 'google-maps-react';
+
 export class MapContainer extends Component {
+    constructor() {
+        super();
+        this.state = {
+            map: null,
+            markers: null
+        }
+    }
+    mapReady = (props, map) => {
+        // Save the map reference in state and prepare the location markers
+        this.setState({
+            map
+        });
+        console.log("at mapReady")
+        this.addMarkers();
+    }
+
+    clickInfo(marker, infoWindow) {
+
+    }
+
+    addMarkers() {
+        const markers = this.props.markers.cats.map((cat) => {
+
+            let marker = new window.google.maps.Marker({
+                position: cat.position,
+                map: this.state.map
+            })
 
 
 
-   
-  render() {
+            let infoWindow = new window.google.maps.InfoWindow({
+                content: `<div class="location-data">
+                  <h5>${cat.name}</h5>  
+                </div>`,
+                maxWidth: 300
+            });
 
-    const markers = this.props.markers.cats.map((cat) =>
-        <Marker
-            onClick={this.props.onMarkerClick}
-            name={cat.name}
-            breed={cat.breed}
-            sex={cat.sex}
-            position={cat.position}
-            key={cat.name}
-          />
-    );
 
-    const style = {
-      width: '60%',
-      height: 'calc(100%-80px)'
-    };
+            let listItem = document.getElementById((cat.name).toLowerCase());
 
+            if (listItem) {
+                listItem.addEventListener('click', e => {
+                  infoWindow.open(this.state.map, marker);
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                setTimeout(() => {
+                    marker.setAnimation(null);
+                }, 1500);
+                });
+            }
+
+            marker.addListener('click', e => {
+                infoWindow.open(this.state.map, marker);
+                marker.setAnimation(window.google.maps.Animation.BOUNCE);
+                setTimeout(() => {
+                    marker.setAnimation(null);
+                }, 1500);
+            });
+
+
+
+            return marker
+        });
+
+        this.setState({
+            markers
+        });
+
+    }
+
+    render() {
+
+             
+
+            const style = {
+                width: '60%',
+                height: 'calc(100%-80px)'
+            };
     return (
     <div className="mapcontainer">
       <Map
       google={this.props.google}
       style={style}
+      onReady = {this.mapReady}
       initialCenter={{
         lat: 42.2646788,
         lng: -83.7388272
       }}
       zoom={16}
       onClick={this.props.onMapClicked}>
-
-        {markers}
-
-        <InfoWindow
-          marker={this.props.activeMarker}
-          visible={this.props.showingInfoWindow}
-          showingInfoWindow={this.props.showingInfoWindow}
-          activeMarker={this.props.activeMarker}
-          selectedCat={this.props.selectedCat}
-          >
-            <div>
-              <h2>Test</h2>
-              {/* <h1>{this.props.selectedCat.name}</h1>
-              <p>{this.props.selectedCat.sex},{this.state.selectedCat.breed}</p> */}
-            </div>
-        </InfoWindow>
-
+  
       </Map>
     
     </div>

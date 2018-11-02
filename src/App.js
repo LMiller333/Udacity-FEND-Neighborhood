@@ -7,39 +7,20 @@ import CatLocations from './CatLocations.json';
 
 class App extends Component {
   // Marker & InfoWindow code obtained from https://github.com/fullstackreact/google-maps-react
-
-
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedCat: {},
-    };
-
-    onListClick(event) {
-      let cat = event.currentTarget.id;
-      console.log(cat);
-      //Here is where I am stuck. I know that the marker.name and props.name from the below
-      //function match the 'cat' name value here, but I'm not sure how to get the marker and props
-      //with just 'cat' name.
-
-      this.setState({
-        // selectedCat: props,
-        // activeMarker: marker,
-        // showingInfoWindow: true
-
-
-      });
-    }
-      
-    onMarkerClick(props,marker,e){
-      console.log(props);
-      console.log(marker);
-      this.setState({
-        selectedCat: props,
-        activeMarker: marker,
-        showingInfoWindow: true
-    });
-    }
+ 
+  constructor(){
+    super();
+    this.state = {
+      markers: CatLocations,
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedCat: {},
+    } 
+    this.onMapClicked = this.onMapClicked.bind(this); 
+  }
+ 
+    
+ 
 
     // onMarkerClick = (props, marker, e) =>
     // this.setState({
@@ -55,18 +36,7 @@ class App extends Component {
         activeMarker: null
         })
     }
-    };
-  
-  constructor(){
-    super();
-    this.state = {
-      markers: CatLocations
-    }
-    this.onMarkerClick = this.onMarkerClick.bind(this);
-    this.onMapClicked = this.onMapClicked.bind(this);
-    this.onListClick = this.onListClick.bind(this);
-  }
-
+    }; 
   
   
   render() {
@@ -74,15 +44,13 @@ class App extends Component {
       <div className="App">
           <Search/>
           <List
-            markers={this.state.markers}
-            onListClick={this.onListClick}
+            markers={this.state.markers} 
             showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
           />
           <MapContainer
-            markers={this.state.markers}
-            onMarkerClick={this.onMarkerClick}
+            markers={this.state.markers} 
             onMapClicked={this.onMapClicked}
             showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker}
