@@ -3,37 +3,14 @@ import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
  
 export class MapContainer extends Component {
 
-    // Obtained from https://github.com/fullstackreact/google-maps-react
 
-
-    state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedCat: {},
-    };
-
-    onMarkerClick = (props, marker, e) =>
-    this.setState({
-        selectedCat: props,
-        activeMarker: marker,
-        showingInfoWindow: true
-    });
-
-    onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-        this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-        })
-    }
-    };
 
    
   render() {
 
     const markers = this.props.markers.cats.map((cat) =>
         <Marker
-            onClick={this.onMarkerClick}
+            onClick={this.props.onMarkerClick}
             name={cat.name}
             breed={cat.breed}
             sex={cat.sex}
@@ -57,16 +34,21 @@ export class MapContainer extends Component {
         lng: -83.7388272
       }}
       zoom={16}
-      onClick={this.onMapClicked}>
+      onClick={this.props.onMapClicked}>
 
         {markers}
 
         <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
+          marker={this.props.activeMarker}
+          visible={this.props.showingInfoWindow}
+          showingInfoWindow={this.props.showingInfoWindow}
+          activeMarker={this.props.activeMarker}
+          selectedCat={this.props.selectedCat}
+          >
             <div>
-              <h1>{this.state.selectedCat.name}</h1>
-              <p>{this.state.selectedCat.sex},{this.state.selectedCat.breed}</p>
+              <h2>Test</h2>
+              {/* <h1>{this.props.selectedCat.name}</h1>
+              <p>{this.props.selectedCat.sex},{this.state.selectedCat.breed}</p> */}
             </div>
         </InfoWindow>
 

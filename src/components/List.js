@@ -9,6 +9,7 @@ class List extends Component {
             key={cat.name}
             breed={cat.breed}
             sex={cat.sex}
+            onListClick={this.props.onListClick}
           />
     );
 
