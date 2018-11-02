@@ -6,29 +6,38 @@ import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
 
 class App extends Component {
-  // Marker & InfoWindow code obtained from https://github.com/fullstackreact/google-maps-react
+  // Marker & InfoWindow code adapted from https://github.com/fullstackreact/google-maps-react
 
 
   state = {
     showingInfoWindow: false,
     activeMarker: {},
     selectedCat: {},
+    markers: CatLocations
     };
 
-    onListClick(event) {
-      let cat = event.currentTarget.id;
-      console.log(cat);
-      //Here is where I am stuck. I know that the marker.name and props.name from the below
-      //function match the 'cat' name value here, but I'm not sure how to get the marker and props
-      //with just 'cat' name.
+    // onListClick(event) {
+    //   let cat = event.currentTarget.id;
+    //   console.log(cat);
+    //   //Here is where I am stuck. I know that the marker.name and props.name from the below
+    //   //function match the 'cat' name value here, but I'm not sure how to get the marker and props
+    //   //with just 'cat' name.
 
-      this.setState({
-        // selectedCat: props,
-        // activeMarker: marker,
-        // showingInfoWindow: true
+    //   this.setState({
+    //     // selectedCat: props,
+    //     // activeMarker: marker,
+    //     // showingInfoWindow: true
 
 
-      });
+    //   });
+    // }
+
+    onListClick=(event)=>{
+      console.log(this.state.markers);
+      console.log(event.currentTarget.id);
+
+      // tmp[index].show = true;
+      // this.setState({markers:tmp});
     }
       
     onMarkerClick(props,marker,e){
@@ -41,13 +50,6 @@ class App extends Component {
     });
     }
 
-    // onMarkerClick = (props, marker, e) =>
-    // this.setState({
-    //     selectedCat: props,
-    //     activeMarker: marker,
-    //     showingInfoWindow: true
-    // });
-
     onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
         this.setState({
@@ -59,12 +61,11 @@ class App extends Component {
   
   constructor(){
     super();
-    this.state = {
-      markers: CatLocations
-    }
+
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
     this.onListClick = this.onListClick.bind(this);
+
   }
 
   
@@ -87,6 +88,7 @@ class App extends Component {
             showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
+            // onMarkerMounted={this.onMarkerMounted}
           />
 
       </div>

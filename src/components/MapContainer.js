@@ -3,8 +3,6 @@ import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
  
 export class MapContainer extends Component {
 
-
-
    
   render() {
 
@@ -43,12 +41,12 @@ export class MapContainer extends Component {
           visible={this.props.showingInfoWindow}
           showingInfoWindow={this.props.showingInfoWindow}
           activeMarker={this.props.activeMarker}
-          selectedCat={this.props.selectedCat}
+          selectedCat={this.props.selectedCat.name}
           >
             <div>
-              <h2>Test</h2>
-              {/* <h1>{this.props.selectedCat.name}</h1>
-              <p>{this.props.selectedCat.sex},{this.state.selectedCat.breed}</p> */}
+              {/* <h2>Test</h2> */}
+              <h1>{this.props.selectedCat.name}</h1>
+              <p>{this.props.selectedCat.sex},{this.props.selectedCat.breed}</p>
             </div>
         </InfoWindow>
 
