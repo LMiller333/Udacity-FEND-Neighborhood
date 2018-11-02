@@ -23,9 +23,9 @@ class App extends Component {
       //with just 'cat' name.
 
       this.setState({
-        selectedCat: props,
-        activeMarker: marker,
-        showingInfoWindow: true
+        // selectedCat: props,
+        // activeMarker: marker,
+        // showingInfoWindow: true
 
 
       });
