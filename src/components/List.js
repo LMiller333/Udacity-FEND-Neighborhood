@@ -6,10 +6,10 @@ class List extends Component {
     const listings = this.props.markers.cats.map((cat) =>
         <Listing
             name={cat.name}
-            key={cat.name}
+            id={cat.id}
+            key={cat.id}
             breed={cat.breed}
             sex={cat.sex}
-            onListClick={this.props.onListClick}
           />
     );
 

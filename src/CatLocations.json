@@ -2,6 +2,7 @@
 {
     "cats": [
       {
+        "id":1,
         "name": "Mimo",
         "breed":"Tabby",
         "sex":"M",
@@ -11,6 +12,7 @@
         }
       },
       {
+        "id":2,
         "name": "Tuco",
         "breed":"Tabby",
         "sex":"M",
@@ -20,6 +22,7 @@
         }
       },
       {
+        "id":3,
         "name": "Varona",
         "breed":"Calico",
         "sex":"F",
@@ -29,6 +32,7 @@
         }
       },
       {
+        "id":4,
         "name": "Irwin",
         "breed":"Domestic Shorthair",
         "sex":"M",
@@ -38,6 +42,7 @@
         }
       },
       {
+        "id":5,
         "name": "Josie",
         "breed":"Tortoiseshell",
         "sex":"F",
@@ -47,6 +52,7 @@
         }
       },
       {
+        "id":6,
         "name": "Walter",
         "breed":"Domestic Longhair",
         "sex":"M",
