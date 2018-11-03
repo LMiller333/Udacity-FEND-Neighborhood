@@ -6,6 +6,11 @@ import { faGhost } from '@fortawesome/free-solid-svg-icons'
 library.add(faGhost)
 
 class Search extends Component {
+
+  // handleSearch(event) {
+  //   this.props.updateQuery(event.target.value)
+  // }
+
   render() {
     return (
       <div className="navbar">
@@ -13,8 +18,7 @@ class Search extends Component {
           <div className="search-input">
           <label>
             <FontAwesomeIcon icon="ghost" className="search-icon" />
-            <input type="text" placeholder="Search for a place"/>
-            {/* TODO: Add value this.props.query and onclick event */}
+            <input type="text" placeholder="Search for a place" value={this.props.query} onChange={ (event) => this.props.updateQuery(event.target.value)}/>
           </label>
           </div>
         </div>

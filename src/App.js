@@ -14,12 +14,26 @@ class App extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedCat: {},
-      markers: CatLocations
+      markers: CatLocations,
+      query: ""
     }
 
     this.onMapClicked = this.onMapClicked.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
 
   }
+
+  updateQuery = (query) => {
+    this.setState({ query: query});
+
+    if (query){
+      let dMarkers = this.state.markers.cats.filter((cat) => {
+        return cat.name.toLowerCase().includes(query) || cat.breed.toLowerCase().includes(query) || cat.sex.toLowerCase().match(query)
+      });
+      console.log(dMarkers);
+    }
+
+    }
   
   onMapClicked = (props) => {
   if (this.state.showingInfoWindow) {
@@ -34,7 +48,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <Search/>
+          <Search
+            query={this.state.query}
+            updateQuery={this.updateQuery}/>
           <List
             markers={this.state.markers}
             showingInfoWindow={this.state.showingInfoWindow}

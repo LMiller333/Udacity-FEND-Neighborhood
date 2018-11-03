@@ -5,18 +5,20 @@ import InfoWindowAdopt from '../components/InfoWindowAdopt';
  class InfoWindow extends Component {
 
     constructor(){
-
         super();
         this.state = {
             data:null
         };
-        this.getData(); 
-    
+        this.pfCatName = "";
     }
 
-    getData() {
-        console.log("getting data")
-        const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
+    componentWillMount(){
+        this.getData();
+    }
+
+        getData = () => {
+            console.log("getting data")
+            const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
 
         // fetchJsonp(`http://api.petfinder.com/pet.getRandom?key=${pfApiKey}&format=json`,
         //     {
@@ -36,32 +38,32 @@ import InfoWindowAdopt from '../components/InfoWindowAdopt';
         //   console.log('parsing failed', ex)
         // })
 
-        $.ajax({
-            url: 'http://api.petfinder.com/pet.getRandom?',
-            jsonp: "callback",
-            dataType: 'jsonp',
-            data: {
-                key: pfApiKey,
-                animal: 'cat',
-                output: 'basic',
-                format: 'json',
-            },
-            cache: false,
-            success: function (data){
-                console.log(data);
-                const array = data.response;
-                console.log(array);
-                // var pfCatName= data.petfinder.pet.name.$t;
-                // var id = data.petfinder.pet.id.$t;
-                // var linkToPfCat = `https://www.petfinder.com/petdetail/${id}`;
-                // console.log(id,linkToPfCat);
+            $.ajax({
+                url: 'http://api.petfinder.com/pet.getRandom?',
+                jsonp: "callback",
+                dataType: 'jsonp',
+                data: {
+                    key: pfApiKey,
+                    animal: 'cat',
+                    output: 'basic',
+                    format: 'json',
+                },
+                cache: false,
+                success: function (data){
+                    // console.log(data);
+                    // const array = data.response;
+                    // console.log(array);
+                    this.pfCatName= data.petfinder.pet.name.$t;
+                    var id = data.petfinder.pet.id.$t;
+                    var linkToPfCat = `https://www.petfinder.com/petdetail/${id}`;
+                    console.log(id,linkToPfCat);
+            }
+                .bind(this),
+                error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+                }.bind(this),
+            });
         }
-            .bind(this),
-            error: function(xhr, status, err) {
-            console.error(this.props.url, status, err.toString());
-            }.bind(this),
-        });
-    }
 
     // https://jaketrent.com/post/react-componentdidmount-not-called-server-render/
   
@@ -70,7 +72,7 @@ import InfoWindowAdopt from '../components/InfoWindowAdopt';
 
   render() {
 
-    // console.log(this.state.data);
+    console.log(this.pfCatName);
 
    return (
     <li className="infowindow" id={this.props.id}>
