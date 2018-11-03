@@ -16,6 +16,7 @@
   list-style-type:none;
   margin:1rem;
   border-bottom:1px solid black;
+  cursor: pointer; 
 }
 
 h2{

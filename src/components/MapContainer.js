@@ -14,14 +14,17 @@ export class MapContainer extends Component {
     }
   }
 
+  //TODO: Would like to add function where other infoWindows are hidden on new clicks
+
   mapReady = (props, map) => {
       // Save the map reference in state and prepare the location markers
       this.setState({
-          map
+          map,
       });
       console.log("at mapready")
       this.generateMarkers();
   }
+
 
   // clickInfo(marker, infoWindow) {
   // }
