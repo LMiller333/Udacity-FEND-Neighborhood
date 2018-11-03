@@ -81,8 +81,6 @@ export class MapContainer extends Component {
    
   render() {
 
-
-
     const style = {
       width: '60%',
       height: 'calc(100%-80px)'
@@ -101,7 +99,6 @@ export class MapContainer extends Component {
       onClick={this.props.onMapClicked}
       onReady = {this.mapReady}>
       </Map>
-    
     </div>
     );
   }
