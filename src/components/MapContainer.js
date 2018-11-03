@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {Map, GoogleApiWrapper} from 'google-maps-react';
+import InfoWindow from '../components/InfoWindow.js';
+import ReactDOMServer from 'react-dom/server';
+
  
 export class MapContainer extends Component {
 
@@ -10,6 +13,7 @@ export class MapContainer extends Component {
         markers: null
     }
   }
+
 
   mapReady = (props, map) => {
       // Save the map reference in state and prepare the location markers
@@ -24,9 +28,9 @@ export class MapContainer extends Component {
   }
 
   //This loops through all of the cat markers from CatLocations.json, which is passed 
-  //as the markers prop. It creates a marker, infoWindow, and listing for each cat.
+  //as the markers prop. It creates a marker and infoWindow for each cat.
 
-  generateMarkers(){
+generateMarkers(){
     const markers = this.props.markers.cats.map((cat) =>{
 
       let marker = new window.google.maps.Marker({
@@ -34,14 +38,16 @@ export class MapContainer extends Component {
         map:this.state.map
       });
 
-      let infoWindow = new window.google.maps.InfoWindow({
-        content:`<div class="location-data">
-                <h5>${cat.name}</h5>  
-                </div>`,
-      maxWidth: 300
-      });
+        let infoContent = ReactDOMServer.renderToString(<InfoWindow name={cat.name} sex={cat.sex} breed={cat.breed}/>);
+        
+        let infoWindow = new window.google.maps.InfoWindow({
+          map: this.map,
+          anchor: this.marker,
+          content: infoContent,
+          maxWidth:300
+        })
 
-      let listing =document.getElementById((cat.name).toLowerCase());
+      let listing =document.getElementById((cat.id));
 
       //Event listener is added to listing which triggers the infoWindow display and bounce animation.
 
@@ -53,6 +59,7 @@ export class MapContainer extends Component {
             marker.setAnimation(null);
           }, 1500);
         });
+        
       };
 
       //Event listener is added to marker which triggers the infoWindow display and bounce animation.

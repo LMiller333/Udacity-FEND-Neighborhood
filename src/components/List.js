@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Listing from '../components/Listing.js';
 
 class List extends Component {
+
+
   render() {
     const listings = this.props.markers.cats.map((cat) =>
         <Listing

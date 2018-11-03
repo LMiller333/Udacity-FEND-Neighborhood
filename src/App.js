@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './components/Search';
+import Search from './components/Search.js';
 import List from './components/List.js';
 import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
 
 class App extends Component {
+
 
   constructor(){
     super();
