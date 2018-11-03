@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery'; 
-import InfoWindowAdopt from '../InfoWindowAdopt';
+import InfoWindowAdopt from '../components/InfoWindowAdopt';
 
  class InfoWindow extends Component {
 
