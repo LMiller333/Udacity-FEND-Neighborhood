@@ -25,12 +25,13 @@ class App extends Component {
   }
 
   updateQuery = (query) => {
+    let queryLc = query.toLowerCase();
     this.setState({ query: query});
 
     if (query){
       console.log("processing query");
       let displayMarkers = this.state.markers.filter((cat) => {
-        return cat.name.toLowerCase().includes(query) || cat.breed.toLowerCase().includes(query) || (cat.sex.toLowerCase() === query)
+        return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || (cat.sex.toLowerCase() === queryLc)
       });
       console.log(displayMarkers);
     this.setState({displayMarkers: displayMarkers});
@@ -62,7 +63,6 @@ class App extends Component {
             showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
-            markers={this.state.markers}
           />
           <MapContainer
             displayMarkers={this.state.displayMarkers}

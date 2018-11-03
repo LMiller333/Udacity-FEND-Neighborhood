@@ -14,7 +14,6 @@ export class MapContainer extends Component {
     }
   }
 
-
   mapReady = (props, map) => {
       // Save the map reference in state and prepare the location markers
       this.setState({
@@ -32,7 +31,7 @@ export class MapContainer extends Component {
   //as the markers prop. It creates a marker and infoWindow for each cat.
 
 generateMarkers(){
-    const markers = this.props.displayMarkers.map((cat) =>{
+    const markers = this.props.markers.map((cat) =>{
 
       let marker = new window.google.maps.Marker({
         position:cat.position,
@@ -66,6 +65,7 @@ generateMarkers(){
       //Event listener is added to marker which triggers the infoWindow display and bounce animation.
 
       marker.addListener('click', () => {
+        console.log('marker is clicked');
         infoWindow.open(this.state.map, marker);
         // marker.setAnimation(window.google.maps.Animate.BOUNCE);
         setTimeout(() => {
