@@ -18,7 +18,7 @@ class Search extends Component {
           <div className="search-input">
           <label>
             <FontAwesomeIcon icon="ghost" className="search-icon" />
-            <input type="text" placeholder="Search for a place" value={this.props.query} onChange={ (event) => this.props.updateQuery(event.target.value)}/>
+            <input type="text" placeholder="Search for a cat by name, breed, or sex" value={this.props.query} onChange={ (event) => this.props.updateQuery(event.target.value)}/>
           </label>
           </div>
         </div>

@@ -5,7 +5,7 @@ class List extends Component {
 
 
   render() {
-    const listings = this.props.markers.cats.map((cat) =>
+    const listings = this.props.displayMarkers.map((cat) =>
         <Listing
             name={cat.name}
             id={cat.id}

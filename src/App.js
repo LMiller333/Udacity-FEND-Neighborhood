@@ -14,7 +14,8 @@ class App extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedCat: {},
-      markers: CatLocations,
+      markers: CatLocations.cats,
+      displayMarkers:CatLocations.cats,
       query: ""
     }
 
@@ -27,10 +28,15 @@ class App extends Component {
     this.setState({ query: query});
 
     if (query){
-      let dMarkers = this.state.markers.cats.filter((cat) => {
-        return cat.name.toLowerCase().includes(query) || cat.breed.toLowerCase().includes(query) || cat.sex.toLowerCase().match(query)
+      console.log("processing query");
+      let displayMarkers = this.state.markers.filter((cat) => {
+        return cat.name.toLowerCase().includes(query) || cat.breed.toLowerCase().includes(query) || (cat.sex.toLowerCase() === query)
       });
-      console.log(dMarkers);
+      console.log(displayMarkers);
+    this.setState({displayMarkers: displayMarkers});
+    }
+    else {
+      this.setState({displayMarkers:this.state.markers})
     }
 
     }
@@ -52,19 +58,19 @@ class App extends Component {
             query={this.state.query}
             updateQuery={this.updateQuery}/>
           <List
-            markers={this.state.markers}
+            displayMarkers={this.state.displayMarkers}
             showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
-            markets={this.state.markers}
+            markers={this.state.markers}
           />
           <MapContainer
-            markers={this.state.markers}
+            displayMarkers={this.state.displayMarkers}
             onMapClicked={this.onMapClicked}
             showingInfoWindow={this.state.showingInfoWindow}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
-            markets={this.state.markers}
+            markers={this.state.markers}
           />
 
       </div>

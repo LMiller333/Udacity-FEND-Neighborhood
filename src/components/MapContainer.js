@@ -24,14 +24,15 @@ export class MapContainer extends Component {
       this.generateMarkers();
   }
 
-  clickInfo(marker, infoWindow) {
-  }
+  // clickInfo(marker, infoWindow) {
+  // }
+
 
   //This loops through all of the cat markers from CatLocations.json, which is passed 
   //as the markers prop. It creates a marker and infoWindow for each cat.
 
 generateMarkers(){
-    const markers = this.props.markers.cats.map((cat) =>{
+    const markers = this.props.displayMarkers.map((cat) =>{
 
       let marker = new window.google.maps.Marker({
         position:cat.position,
