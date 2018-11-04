@@ -52,6 +52,9 @@ import $ from 'jquery';
 
   render() {
 
+    console.log(this.props.matchingCat.name);
+
+
    return (
         <li className="infowindow" id={this.props.selectedCat.id}>
             <div className="neighborCatInfo">
@@ -61,8 +64,8 @@ import $ from 'jquery';
             </div>
             
             <div className="petfinderInfo">
-                <p>NAME is a SEX BREED just like {this.props.name}.</p>
-                <p>This AGE cat lives in CITY, STATE</p>
+                <p>{this.props.matchingCat.name.$t} is a  just like </p>
+                <p>This  cat lives in </p>
                 <p>Read more at Petfinder!</p>
             </div>
         </li>

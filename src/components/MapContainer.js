@@ -1,54 +1,56 @@
 import React, { Component } from 'react';
 import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
 import InfoWindowDetail from './InfoWindowDetail.js';
-import $ from 'jquery'; 
 
  
 export class MapContainer extends Component {
+
 
   constructor() {
     super();
     this.state = {
         map: null,
-        markers: null,
-        matchingCat:null
+        markers: null
     }
-    this.runAjaxRequest = this.runAjaxRequest.bind(this);
+    // this.runAjaxRequest = this.runAjaxRequest.bind(this);
+
   }
 
   //update to handle result if no cat meets query
 
-  runAjaxRequest=()=>{
-    console.log("running ajax");
-    const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
-    let params = {
-        key: pfApiKey,
-        animal: 'cat',
-        sex:this.props.selectedCat.sex,
-        breed: this.props.selectedCat.breed,
-        output: 'basic',
-        format: 'json',
-    }
-    const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
-    $.ajax({
-        url: url,
-        jsonp: "callback",
-        dataType: 'jsonp',
-        cache: false,
-        success: function (data){
-            let matchingCat = data.petfinder.pet;
-            console.log(data);
-            console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
-
-    }
-        .bind(this),
-        error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-        }.bind(this),
-    });
-  }
+  // runAjaxRequest=()=>{
+    // console.log("running ajax");
+    // const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
+    // let params = {
+    //     key: pfApiKey,
+    //     animal: 'cat',
+    //     sex:this.props.selectedCat.sex,
+    //     breed: this.props.selectedCat.breed,
+    //     output: 'basic',
+    //     format: 'json',
+    // }
+    // const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
+    // $.ajax({
+    //     url: url,
+    //     jsonp: "callback",
+    //     dataType: 'jsonp',
+    //     cache: false,
+    //     success: function (data){
+    //         let matchingCat = data.petfinder.pet;
+    //         console.log(data);
+    //         console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
+    //         this.setState({matchingCat : matchingCat});
+    // }
+    //     .bind(this),
+    //     error: function(xhr, status, err) {
+    //     console.error(this.props.url, status, err.toString());
+    //     }.bind(this),
+    // });
+  // }
+  
   
     render() {
+
 
       const markers = this.props.markers.map((cat) =>
           <Marker
@@ -83,14 +85,13 @@ export class MapContainer extends Component {
           <InfoWindow
             marker={this.props.activeMarker}
             visible={this.props.showingInfoWindow}
-            onOpen={this.runAjaxRequest}
             showingInfoWindow={this.props.showingInfoWindow}
             activeMarker={this.props.activeMarker}
             selectedCat={this.props.selectedCat}
             >
               <InfoWindowDetail
-              selectedCat={this.props.selectedCat}>
-
+              selectedCat={this.props.selectedCat}
+              matchingCat={this.props.matchingCat}>
               </InfoWindowDetail>
 
           </InfoWindow>
