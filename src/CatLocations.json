@@ -5,7 +5,7 @@
         "id":1,
         "name": "Mimo",
         "breed":"Tabby",
-        "sex":"Male",
+        "sex":"M",
         "position": {
           "lat": 42.264200,
           "lng": -83.738450
@@ -15,7 +15,7 @@
         "id":2,
         "name": "Tuco",
         "breed":"Tabby",
-        "sex":"Male",
+        "sex":"M",
         "position": {
           "lat": 42.262190,
           "lng": -83.738420
@@ -25,7 +25,7 @@
         "id":3,
         "name": "Varona",
         "breed":"Calico",
-        "sex":"Female",
+        "sex":"F",
         "position": {
           "lat": 42.264180,
           "lng": -83.739500
@@ -34,8 +34,8 @@
       {
         "id":4,
         "name": "Irwin",
-        "breed":"Domestic Shorthair",
-        "sex":"Male",
+        "breed":"Domestic Short Hair",
+        "sex":"M",
         "position": {
           "lat":  42.263240,
           "lng": -83.736420
@@ -45,7 +45,7 @@
         "id":5,
         "name": "Josie",
         "breed":"Tortoiseshell",
-        "sex":"Female",
+        "sex":"F",
         "position": {
           "lat":  42.263210,
           "lng": -83.739470
@@ -54,8 +54,8 @@
       {
         "id":6,
         "name": "Walter",
-        "breed":"Domestic Longhair",
-        "sex":"Male",
+        "breed":"Domestic Long Hair",
+        "sex":"M",
         "position": {
           "lat": 42.261945,
           "lng": -83.741500

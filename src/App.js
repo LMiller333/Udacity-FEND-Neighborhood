@@ -34,8 +34,8 @@ class App extends Component {
   }
     
   onMarkerClick(props,marker,e){
-    console.log(props);
-    console.log(marker);
+    // console.log(props);
+    // console.log(marker);
     this.setState({
       selectedCat: props,
       activeMarker: marker,
