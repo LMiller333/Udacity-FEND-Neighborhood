@@ -14,6 +14,7 @@ class Search extends Component {
   render() {
     return (
       <div className="navbar">
+        <button id="toggle">Toggle View</button>
         <div className="search">
           <div className="search-input">
           <label>

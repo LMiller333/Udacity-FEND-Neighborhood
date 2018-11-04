@@ -8,6 +8,9 @@ import $ from 'jquery';
 
 class App extends Component {
 
+  //I know it seems excessive to have a prop for each attribute of the matchingCat results, but
+  //I was experiencing really odd errors when trying to access nested attributes in child components
+
   constructor(){
     super();
     this.state = {
@@ -17,7 +20,12 @@ class App extends Component {
       markers: CatLocations.cats,
       displayMarkers: CatLocations.cats,
       query: "",
-      matchingCat: {}
+      matchingCatName: null,
+      matchingCatBreed: null,
+      matchingCatSex : null,
+      matchingCatId : null,
+      matchingCatCity : null,
+      matchingCatState : null
     }
     this.updateQuery = this.updateQuery.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -31,13 +39,12 @@ class App extends Component {
   }
     
   onMarkerClick(props,marker,e){
-    // console.log(props);
-    // console.log(marker);
     this.setState({
       selectedCat: props,
       activeMarker: marker,
-      showingInfoWindow: true
+    //   showingInfoWindow: true
     });
+
 
     console.log("running ajax");
     const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
@@ -60,7 +67,16 @@ class App extends Component {
             let matchingCat = data.petfinder.pet;
             // console.log(data);
             // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
-            this.setState({matchingCat : matchingCat});
+            this.setState({
+              matchingCat: matchingCat,
+              // matchingCatName : matchingCat.name.$t,
+              // matchingCatBreed : matchingCat.breeds.breed.$t,
+              // matchingCatSex : matchingCat.sex.$t,
+              // matchingCatId : matchingCat.id.$t,
+              // matchingCatCity : matchingCat.contact.city.$t,
+              // matchingCatState : matchingCat.contact.state.$t,
+              showingInfoWindow: true,
+              });
 
         }.bind(this),
         error: function(xhr, status, err) {
@@ -110,21 +126,27 @@ class App extends Component {
           <Search
             query={this.state.query}
             updateQuery={this.updateQuery}/>
+            <MapContainer
+              displayMarkers={this.state.displayMarkers}
+              onMapClicked={this.onMapClicked}
+              onMarkerClick={this.onMarkerClick}
+              activeMarker={this.state.activeMarker}
+              selectedCat={this.state.selectedCat}
+              matchingCat={this.state.matchingCat}
+              // matchingCatName={this.state.matchingCatName}
+              // matchingCatBreed={this.state.matchingCatBreed}
+              // matchingCatSex={this.state.matchingCatSex}
+              // matchingCatId ={this.state.matchingCatId}
+              // matchingCatCity ={this.state.matchingCatCity}
+              // matchingCatState ={this.state.matchingCatState}
+              showingInfoWindow={this.state.showingInfoWindow}
+              markers={this.state.markers}
+            />
           <List
             displayMarkers={this.state.displayMarkers}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
             showingInfoWindow={this.state.showingInfoWindow}
-          />
-          <MapContainer
-            displayMarkers={this.state.displayMarkers}
-            onMapClicked={this.onMapClicked}
-            onMarkerClick={this.onMarkerClick}
-            activeMarker={this.state.activeMarker}
-            selectedCat={this.state.selectedCat}
-            matchingCat={this.state.matchingCat}
-            showingInfoWindow={this.state.showingInfoWindow}
-            markers={this.state.markers}
           />
 
       </div>

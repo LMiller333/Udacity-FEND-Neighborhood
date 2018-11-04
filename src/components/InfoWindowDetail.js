@@ -1,58 +1,20 @@
 import React, { Component } from 'react';
-import $ from 'jquery'; 
 
  class InfoWindowDetail extends Component {
 
-    constructor(){
-        super();
-        this.state = {
-            data:null
-        };
-        this.pfCatName = "";
-    }
-
-    componentDidMount(){
-        console.log("detail mounted");
-    }
-
-    // getData = () => {
-    //     console.log("getting data")
-    //     const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
-    //     $.ajax({
-    //         url: 'http://api.petfinder.com/pet.getRandom?',
-    //         jsonp: "callback",
-    //         dataType: 'jsonp',
-    //         data: {
-    //             key: pfApiKey,
-    //             animal: 'cat',
-    //             output: 'basic',
-    //             format: 'json',
-    //         },
-    //         cache: false,
-    //         success: function (data){
-    //             // console.log(data);
-    //             // const array = data.response;
-    //             // console.log(array);
-    //             // this.pfCatName= data.petfinder.pet.name.$t;
-    //             // var id = data.petfinder.pet.id.$t;
-    //             // var linkToPfCat = `https://www.petfinder.com/petdetail/${id}`;
-    //             // console.log(id,linkToPfCat);
-    //     }
-    //         .bind(this),
-    //         error: function(xhr, status, err) {
-    //         console.error(this.props.url, status, err.toString());
-    //         }.bind(this),
-    //     });
-    // }
-
-    // // https://jaketrent.com/post/react-componentdidmount-not-called-server-render/
-  
-     
-    
-
   render() {
 
-    console.log(this.props.matchingCat.name);
+    // const name = this.props.matchingCatName;
+    // const breed = this.props.matchingCatBreed;
+    // const sex = (this.props.matchingCatSex === "M") ? "Male" : "Female";
+    // const pronoun = (this.props.matchingCatSex === "M") ? "He" : "She";
+    // const city = this.props.matchingCatCity;
+    // const state = this.props.matchingCatState;
+    // const id = this.props.matchingCatId;
+
+    // const text = `${name} is a ${sex} ${breed} like ${this.props.selectedCat.name}. ${pronoun} lives in ${city}, ${state}.`
+
+    // const petFinderUrl = `https://www.petfinder.com/petdetail/${id}`;
 
 
    return (
@@ -62,12 +24,13 @@ import $ from 'jquery';
                 <p>{this.props.selectedCat.sex} {this.props.selectedCat.breed}</p>
                 <h3>Looking for a cat like {this.props.selectedCat.name}?</h3>
             </div>
-            
             <div className="petfinderInfo">
-                <p>{this.props.matchingCat.name.$t} is a  just like </p>
-                <p>This  cat lives in </p>
-                <p>Read more at Petfinder!</p>
+                <p>{this.props.matchingCat.name}</p>
+                <br/><br/>
+                {/* <a href={petFinderUrl} target="_blank">Visit PetFinder to Learn More</a> */}
             </div>
+
+
         </li>
     
     )      

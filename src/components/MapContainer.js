@@ -12,41 +12,7 @@ export class MapContainer extends Component {
         map: null,
         markers: null
     }
-    // this.runAjaxRequest = this.runAjaxRequest.bind(this);
-
   }
-
-  //update to handle result if no cat meets query
-
-  // runAjaxRequest=()=>{
-    // console.log("running ajax");
-    // const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
-    // let params = {
-    //     key: pfApiKey,
-    //     animal: 'cat',
-    //     sex:this.props.selectedCat.sex,
-    //     breed: this.props.selectedCat.breed,
-    //     output: 'basic',
-    //     format: 'json',
-    // }
-    // const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
-    // $.ajax({
-    //     url: url,
-    //     jsonp: "callback",
-    //     dataType: 'jsonp',
-    //     cache: false,
-    //     success: function (data){
-    //         let matchingCat = data.petfinder.pet;
-    //         console.log(data);
-    //         console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
-    //         this.setState({matchingCat : matchingCat});
-    // }
-    //     .bind(this),
-    //     error: function(xhr, status, err) {
-    //     console.error(this.props.url, status, err.toString());
-    //     }.bind(this),
-    // });
-  // }
   
   
     render() {
@@ -63,16 +29,16 @@ export class MapContainer extends Component {
             />
       );
   
-      const style = {
-        width: '60%',
-        height: 'calc(100%-80px)'
-      };
+      // const style = {
+      //   width: '90%',
+      //   height: 'auto'
+      // };
   
       return (
       <div className="mapcontainer">
         <Map
         google={this.props.google}
-        style={style}
+        // style={style}
         initialCenter={{
           lat: 42.2646788,
           lng: -83.7388272
@@ -88,10 +54,19 @@ export class MapContainer extends Component {
             showingInfoWindow={this.props.showingInfoWindow}
             activeMarker={this.props.activeMarker}
             selectedCat={this.props.selectedCat}
+            style={{}}
             >
               <InfoWindowDetail
               selectedCat={this.props.selectedCat}
-              matchingCat={this.props.matchingCat}>
+              matchingCat={this.props.matchingCat}
+              // matchingCatName={this.props.matchingCatName}
+              // matchingCatBreed={this.props.matchingCatBreed}
+              // matchingCatSex={this.props.matchingCatSex}
+              // matchingCatId ={this.props.matchingCatId}
+              // matchingCatCity ={this.props.matchingCatCity}
+              // matchingCatState ={this.props.matchingCatState}
+              >
+              
               </InfoWindowDetail>
 
           </InfoWindow>
