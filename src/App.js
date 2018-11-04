@@ -7,20 +7,50 @@ import CatLocations from './CatLocations.json';
 
 class App extends Component {
 
-
   constructor(){
     super();
     this.state = {
 
+      showingInfoWindow: false,
       activeMarker: {},
       selectedCat: {},
       markers: CatLocations.cats,
-      displayMarkers:CatLocations.cats,
+      displayMarkers: CatLocations.cats,
       query: ""
     }
     this.updateQuery = this.updateQuery.bind(this);
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onMapClicked = this.onMapClicked.bind(this);
+    this.onListClick = this.onListClick.bind(this);
 
   }
+
+  onListClick=(event)=>{
+    console.log(this.state.markers);
+    console.log(event.currentTarget.id);
+
+    // tmp[index].show = true;
+    // this.setState({markers:tmp});
+  }
+    
+  onMarkerClick(props,marker,e){
+    console.log(props);
+    console.log(marker);
+    this.setState({
+      selectedCat: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+  });
+  }
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+        this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+        })
+    }
+    };
 
   updateQuery = (query) => {
     let queryLc = query.toLowerCase();
@@ -54,12 +84,15 @@ class App extends Component {
             displayMarkers={this.state.displayMarkers}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
+            showingInfoWindow={this.state.showingInfoWindow}
           />
           <MapContainer
             displayMarkers={this.state.displayMarkers}
             onMapClicked={this.onMapClicked}
+            onMarkerClick={this.onMarkerClick}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
+            showingInfoWindow={this.state.showingInfoWindow}
             markers={this.state.markers}
           />
 
