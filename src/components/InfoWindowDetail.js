@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 
   render() {
 
+    // console.log(this.props.matchingCats);
     // const name = this.props.matchingCatName;
     // const breed = this.props.matchingCatBreed;
     // const sex = (this.props.matchingCatSex === "M") ? "Male" : "Female";

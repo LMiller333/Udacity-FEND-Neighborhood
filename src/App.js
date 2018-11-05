@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './components/Search.js';
-import List from './components/List.js';
 import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
 import $ from 'jquery';
@@ -15,8 +13,7 @@ class App extends Component {
     super();
     this.state = {
       locations: CatLocations.cats,
-      // displayMarkers: CatLocations.cats,
-      // query: "",
+      matchingCats: [],
       matchingCatName: null,
       matchingCatBreed: null,
       matchingCatSex : null,
@@ -25,84 +22,79 @@ class App extends Component {
       matchingCatState : null,
       matchingCatText: null
     }
-    // this.updateQuery = this.updateQuery.bind(this);
-    // this.onMarkerClick = this.onMarkerClick.bind(this);
-    // this.onMapClicked = this.onMapClicked.bind(this);
-    // this.onListClick = this.onListClick.bind(this);
   }
 
-  // onListClick=(event)=>{
-  //   console.log(this.state.markers);
-  //   console.log(event.currentTarget.id);
-  // }
+  componentDidMount(){
+    
+    console.log("component mounted");
+    this.getMatchingCats();
+
+
+  }
+
+  getMatchingCats =  () => {
+    console.log("getting matching cats");
+
+    const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
+    
+    let matchingCats = this.state.locations.map((cat,i) => {
+
+      let origCat = this.state.locations[i];
+
+      let params = {
+        key: pfApiKey,
+        animal: 'cat',
+        sex: cat.sex,
+        breed: cat.breed,
+        output: 'basic',
+        format: 'json',
+      }
+
+      const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
+      
+      $.ajax({
+        url: url,
+        jsonp: "callback",
+        dataType: 'jsonp',
+        cache: false,
+        success: function (data){
+
+          let matchingCat = data.petfinder.pet;
+          let matchingCatMsg = `${matchingCat.name.$t} is the same sex and breed as ${origCat.name}. This ${matchingCat.age.$t.toLowerCase()} cat lives in ${matchingCat.contact.city.$t}, ${matchingCat.contact.state.$t}.`;
+          const linkToPetfinder = `https://www.petfinder.com/petdetail/${matchingCat.id.$t}`;
+          console.log(matchingCat);
+          console.log(linkToPetfinder);
+          this.state.matchingCats.push(matchingCat);
+
+          // let matchingCatText = `${matchingCat.name.$t} is a ${matchingCat.breeds.breed.$t}`;
+          // console.log(data);
+          // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
+          // this.setState({
+          //   matchingCat: matchingCat,
+          //   matchingCatText: matchingCatText,
+          //   matchingCatName : matchingCat.name.$t,
+          //   matchingCatBreed : matchingCat.breeds.breed.$t,
+          //   matchingCatSex : matchingCat.sex.$t,
+          //   matchingCatId : matchingCat.id.$t,
+          //   matchingCatCity : matchingCat.contact.city.$t,
+          //   matchingCatState : matchingCat.contact.state.$t
+          //   });
+
+        }.bind(this),
+        error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+        }.bind(this),
+      });
+
+    });
+
+
+
+  };
+
+ 
     
   
-
-    // console.log(props);
-    // console.log(marker);
-
-    // console.log("running ajax");
-    // const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
-    // let params = {
-    //     key: pfApiKey,
-    //     animal: 'cat',
-    //     sex:this.state.selectedCat.sex,
-    //     breed: this.state.selectedCat.breed,
-    //     output: 'basic',
-    //     format: 'json',
-    // }
-    // const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
-    
-    // $.ajax({
-    //     url: url,
-    //     jsonp: "callback",
-    //     dataType: 'jsonp',
-    //     cache: false,
-    //     success: function (data){
-    //         let matchingCat = data.petfinder.pet;
-    //         let matchingCatText = `${matchingCat.name.$t} is a ${matchingCat.breeds.breed.$t}`;
-    //         // console.log(data);
-    //         // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
-    //         this.setState({
-    //           matchingCat: matchingCat,
-    //           matchingCatText: matchingCatText,
-    //           matchingCatName : matchingCat.name.$t,
-    //           matchingCatBreed : matchingCat.breeds.breed.$t,
-    //           matchingCatSex : matchingCat.sex.$t,
-    //           matchingCatId : matchingCat.id.$t,
-    //           matchingCatCity : matchingCat.contact.city.$t,
-    //           matchingCatState : matchingCat.contact.state.$t
-    //           });
-
-    //     }.bind(this),
-    //     error: function(xhr, status, err) {
-    //     console.error(this.props.url, status, err.toString());
-    //     }.bind(this),
-    // });
-  
-  
-
-
-
-  // updateQuery = (query) => {
-  //   let queryLc = query.toLowerCase();
-  //   this.setState({ query: query});
-
-  //   //TODO: Add male/female filter so that "male" doesn't bring up all results
-
-  //   if (query){
-  //     console.log("processing query");
-  //     let displayMarkers = this.state.locations.filter((cat) => {
-  //       return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
-  //     });
-  //     console.log(displayMarkers);
-  //   this.setState({displayMarkers: displayMarkers});
-  //   }
-  //   else {
-  //     this.setState({displayMarkers:this.state.locations})
-  //   }
-
-  //   }
  
   
 
@@ -114,6 +106,7 @@ class App extends Component {
       <div className="App">
           <MapContainer
             matchingCat={this.state.matchingCat}
+            matchingCats={this.state.matchingCats}
             matchingCatText={this.state.matchingCatText}
             matchingCatName={this.state.matchingCatName}
             matchingCatBreed={this.state.matchingCatBreed}

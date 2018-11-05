@@ -25,22 +25,14 @@ export class MapContainer extends Component {
   }
 
 
-
-      // this.onMarkerClick = this.onMarkerClick.bind(this);
-    // this.onMapClicked = this.onMapClicked.bind(this);
-    // this.onListClick = this.onListClick.bind(this);
+//doug brown
 
   mapReady = (props,map) => {
-    console.log("map ready");
     this.setState({map});
     this.updateMarkers(this.props.locations);
   };
 
-
-
   updateMarkers = (locations) => {
-
-    //doug brown
 
     if (!locations) {
       return;
@@ -104,16 +96,13 @@ export class MapContainer extends Component {
         query: query,
         displayMarkers:this.props.locations
       });
-      console.log(this.state.displayMarkers);
   
       //TODO: Add male/female filter so that "male" doesn't bring up all results
   
       if (query){
-        console.log("query is " + query );
         let displayMarkers = this.props.locations.filter((cat) => {
           return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
         });
-        console.log(displayMarkers);
         this.setState({displayMarkers: displayMarkers}, 
           () => {
             this.updateMarkers(this.state.displayMarkers);
@@ -162,6 +151,7 @@ export class MapContainer extends Component {
               >
                 <InfoWindowDetail
                 sc={scProps}
+                matchingCats={this.props.matchingCats}
                 matchingCat={this.state.matchingCat}
                 matchingCatText={this.props.matchingCatText}
                 matchingCatName={this.props.matchingCatName}
