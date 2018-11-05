@@ -14,10 +14,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedCat: {},
-      markers: CatLocations.cats,
+      locations: CatLocations.cats,
       displayMarkers: CatLocations.cats,
       query: "",
       matchingCatName: null,
@@ -29,77 +26,63 @@ class App extends Component {
       matchingCatText: null
     }
     this.updateQuery = this.updateQuery.bind(this);
-    this.onMarkerClick = this.onMarkerClick.bind(this);
-    this.onMapClicked = this.onMapClicked.bind(this);
-    this.onListClick = this.onListClick.bind(this);
+    // this.onMarkerClick = this.onMarkerClick.bind(this);
+    // this.onMapClicked = this.onMapClicked.bind(this);
+    // this.onListClick = this.onListClick.bind(this);
   }
 
-  onListClick=(event)=>{
-    console.log(this.state.markers);
-    console.log(event.currentTarget.id);
-  }
+  // onListClick=(event)=>{
+  //   console.log(this.state.markers);
+  //   console.log(event.currentTarget.id);
+  // }
     
-  onMarkerClick(props,marker,e){
-    this.setState({
-      selectedCat: props,
-      activeMarker: marker,
-    //   showingInfoWindow: true
- 
-    });
+  
 
     // console.log(props);
     // console.log(marker);
 
-    console.log("running ajax");
-    const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
-    let params = {
-        key: pfApiKey,
-        animal: 'cat',
-        sex:this.state.selectedCat.sex,
-        breed: this.state.selectedCat.breed,
-        output: 'basic',
-        format: 'json',
-    }
-    const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
+    // console.log("running ajax");
+    // const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
+    // let params = {
+    //     key: pfApiKey,
+    //     animal: 'cat',
+    //     sex:this.state.selectedCat.sex,
+    //     breed: this.state.selectedCat.breed,
+    //     output: 'basic',
+    //     format: 'json',
+    // }
+    // const url = `http://api.petfinder.com/pet.getRandom?key=${params.key}&animal=${params.animal}&sex=${params.sex}&breed=${params.breed}&output=${params.output}&format=${params.format}`
     
-    $.ajax({
-        url: url,
-        jsonp: "callback",
-        dataType: 'jsonp',
-        cache: false,
-        success: function (data){
-            let matchingCat = data.petfinder.pet;
-            let matchingCatText = `${matchingCat.name.$t} is a ${matchingCat.breeds.breed.$t}`;
-            // console.log(data);
-            // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
-            this.setState({
-              matchingCat: matchingCat,
-              matchingCatText: matchingCatText,
-              matchingCatName : matchingCat.name.$t,
-              matchingCatBreed : matchingCat.breeds.breed.$t,
-              matchingCatSex : matchingCat.sex.$t,
-              matchingCatId : matchingCat.id.$t,
-              matchingCatCity : matchingCat.contact.city.$t,
-              matchingCatState : matchingCat.contact.state.$t,
-              showingInfoWindow: true,
-              });
+    // $.ajax({
+    //     url: url,
+    //     jsonp: "callback",
+    //     dataType: 'jsonp',
+    //     cache: false,
+    //     success: function (data){
+    //         let matchingCat = data.petfinder.pet;
+    //         let matchingCatText = `${matchingCat.name.$t} is a ${matchingCat.breeds.breed.$t}`;
+    //         // console.log(data);
+    //         // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
+    //         this.setState({
+    //           matchingCat: matchingCat,
+    //           matchingCatText: matchingCatText,
+    //           matchingCatName : matchingCat.name.$t,
+    //           matchingCatBreed : matchingCat.breeds.breed.$t,
+    //           matchingCatSex : matchingCat.sex.$t,
+    //           matchingCatId : matchingCat.id.$t,
+    //           matchingCatCity : matchingCat.contact.city.$t,
+    //           matchingCatState : matchingCat.contact.state.$t
+    //           });
 
-        }.bind(this),
-        error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-        }.bind(this),
-    });
-  }
+    //     }.bind(this),
+    //     error: function(xhr, status, err) {
+    //     console.error(this.props.url, status, err.toString());
+    //     }.bind(this),
+    // });
+  
   
 
-  onMapClicked = (props) => {
-    if (this.state.showingInfoWindow) {
-        this.setState({
-        showingInfoWindow: false,
-        activeMarker: null
-        })
-    }
-  }
+
 
   updateQuery = (query) => {
     let queryLc = query.toLowerCase();
@@ -109,14 +92,14 @@ class App extends Component {
 
     if (query){
       console.log("processing query");
-      let displayMarkers = this.state.markers.filter((cat) => {
+      let displayMarkers = this.state.locations.filter((cat) => {
         return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
       });
       console.log(displayMarkers);
     this.setState({displayMarkers: displayMarkers});
     }
     else {
-      this.setState({displayMarkers:this.state.markers})
+      this.setState({displayMarkers:this.state.locations})
     }
 
     }
@@ -136,8 +119,8 @@ class App extends Component {
             displayMarkers={this.state.displayMarkers}
             onMapClicked={this.onMapClicked}
             onMarkerClick={this.onMarkerClick}
-            activeMarker={this.state.activeMarker}
-            selectedCat={this.state.selectedCat}
+            // activeMarker={this.state.activeMarker}
+            // selectedCat={this.state.selectedCat}
             matchingCat={this.state.matchingCat}
             matchingCatText={this.state.matchingCatText}
             matchingCatName={this.state.matchingCatName}
@@ -146,8 +129,8 @@ class App extends Component {
             matchingCatId ={this.state.matchingCatId}
             matchingCatCity ={this.state.matchingCatCity}
             matchingCatState ={this.state.matchingCatState}
-            showingInfoWindow={this.state.showingInfoWindow}
-            markers={this.state.markers}
+            // showingInfoWindow={this.state.showingInfoWindow}
+            locations={this.state.locations}
           />
       </div>
     );

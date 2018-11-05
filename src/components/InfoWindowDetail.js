@@ -18,19 +18,17 @@ import React, { Component } from 'react';
 
 
    return (
-        <li className="infowindow" id={this.props.selectedCat.id}>
+        <li className="infowindow" id={this.props.sc && this.props.sc.id}>
             <div className="neighborCatInfo">
-                <h2>{this.props.selectedCat.name}</h2>
-                <p>{this.props.selectedCat.sex} {this.props.selectedCat.breed}</p>
-                <h3>Looking for a cat like {this.props.selectedCat.name}?</h3>
+                <h2>{this.props.sc && this.props.sc.name}</h2>
+                <p>{this.props.sc && this.props.sc.sex} {this.props.sc && this.props.sc.breed}</p>
+                <h3>Looking for a cat like {this.props.sc && this.props.sc.name}?</h3>
             </div>
-            <div className="petfinderInfo">
+            {/* <div className="petfinderInfo">
                 <p>{this.props.matchingCatText}</p>
                 <br/><br/>
-                {/* <a href={petFinderUrl} target="_blank">Visit PetFinder to Learn More</a> */}
-            </div>
-
-
+                <a href={petFinderUrl} target="_blank">Visit PetFinder to Learn More</a>
+            </div> */}
         </li>
     
     )      

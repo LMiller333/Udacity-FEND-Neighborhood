@@ -1,57 +1,105 @@
 import React, { Component } from 'react';
-import {Map, GoogleApiWrapper, Marker, InfoWindow} from 'google-maps-react';
+import {Map, GoogleApiWrapper, InfoWindow} from 'google-maps-react';
 import InfoWindowDetail from './InfoWindowDetail.js';
 import List from './List.js';
 
  
 export class MapContainer extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      map: null,
-      googleMarkers: []
-    }
-    this.googleMarkers = this.props.markers.map((cat) =>
-    <Marker
-      onClick={this.props.onMarkerClick}
-      name={cat.name}
-      breed={cat.breed}
-      sex={cat.sex}
-      position={cat.position}
-      key={cat.id}
-    />
-  );
-  console.log(this.googleMarkers);
-  }
+  state = {
+    map: null,
+    markers: [],
+    markerProps: [],
+    selectedCat: null,
+    activeMarker: null,
+    showingInfoWindow: false,
+  };
 
   mapReady = (props,map) => {
-    this.setState = ({map});
-  }
+    console.log("map ready");
+    this.setState({map});
+    this.updateMarkers(this.props.locations);
+  };
 
-  listItemClicked = (e) => {
-    console.log(e.currentTarget.id);
-    console.log("list item clicked");
 
-    let match = this.googleMarkers.find(function(googleMarker){
-      return googleMarker.key === e.currentTarget.id;
+
+  updateMarkers = (locations) => {
+
+    //doug brown
+
+    if (!locations) {
+      return;
+    }
+
+    this.state.markers.forEach((marker) => marker.setMap(null));
+
+    let markerProps = [];
+
+    console.log(locations);
+
+    let markers = locations.map((cat) => {
+
+      let selectedCat = {
+        name: cat.name,
+        breed: cat.breed,
+        sex: cat.sex,
+        key: cat.id
+      };
+
+      markerProps.push(selectedCat);
+
+      let marker = new this.props.google.maps.Marker({
+        position: cat.position,
+        map: this.state.map
+      });
+
+      marker.addListener('click', () => {
+        this.onMarkerClick(selectedCat,marker,null);
+      });
+
+      return marker;
     });
 
-    console.log(match);
+    this.setState({markers, markerProps});
+
+  };
+
+  onMarkerClick(props,marker,e){
+    this.setState({
+      selectedCat: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+    console.log(this.state.selectedCat);
+  };
+
+  // listItemClicked = (e) => {
+  //   console.log(e.currentTarget.id);
+  //   console.log("list item clicked");
+
+  //   let match = this.googleMarkers.find(function(googleMarker){
+  //     return googleMarker.key === e.currentTarget.id;
+  //   });
+
+  //   console.log(match);
 
     // this.props.onMarkerClick(match.props,match,e);
 
-
-  }
-
-  // onMarkerClick(props,marker,e)
-
-    // let match = googleMarkers.find(function(googleMarker){
-    //   return googleMarker.key === "1";
-    // })
+    onMapClicked = (props) => {
+      if (this.state.showingInfoWindow) {
+          this.setState({
+          showingInfoWindow: false,
+          activeMarker: null
+          })
+      }
+    };
 
   
+  
     render() {
+
+      let scProps = this.state.selectedCat;
+      console.log(scProps);
   
       return (
       <div className="mapcontainer">
@@ -65,22 +113,20 @@ export class MapContainer extends Component {
             lng: -83.7388272
           }}
           zoom={16}
-          onClick={this.props.onMapClicked}
-          onRead={this.mapReady}>
+          onClick={this.onMapClicked}
+          onReady={this.mapReady}>
     
-            {this.googleMarkers}
+            {/* {this.googleMarkers} */}
     
             <InfoWindow
-              marker={this.props.activeMarker}
-              visible={this.props.showingInfoWindow}
-              showingInfoWindow={this.props.showingInfoWindow}
-              activeMarker={this.props.activeMarker}
-              selectedCat={this.props.selectedCat}
-              style={{}}
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              showingInfoWindow={this.state.showingInfoWindow}
+              activeMarker={this.state.activeMarker}
               >
                 <InfoWindowDetail
-                selectedCat={this.props.selectedCat}
-                matchingCat={this.props.matchingCat}
+                sc={scProps}
+                matchingCat={this.state.matchingCat}
                 matchingCatText={this.props.matchingCatText}
                 matchingCatName={this.props.matchingCatName}
                 matchingCatBreed={this.props.matchingCatBreed}
@@ -100,9 +146,9 @@ export class MapContainer extends Component {
         <div className="list">
           <List
               displayMarkers={this.props.displayMarkers}
-              activeMarker={this.props.activeMarker}
-              selectedCat={this.props.selectedCat}
-              showingInfoWindow={this.props.showingInfoWindow}
+              activeMarker={this.state.activeMarker}
+              selectedCat={this.state.selectedCat}
+              showingInfoWindow={this.state.showingInfoWindow}
               listItemClicked={this.listItemClicked}
             />
         </div>
