@@ -29,6 +29,8 @@ class List extends Component {
 
     return (
       <div>
+        <h2>Cats</h2>
+        <p>{this.props.noMarkerMsg}</p>
         {listings}
       </div>
 

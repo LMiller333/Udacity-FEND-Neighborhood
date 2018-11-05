@@ -17,7 +17,8 @@ export class MapContainer extends Component {
       activeMarker: null,
       showingInfoWindow: false,
       displayMarkers: this.props.locations,
-      query: ""
+      query: "",
+      noMarkerMsg: []
     }
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
@@ -104,7 +105,8 @@ export class MapContainer extends Component {
       let queryLc = query.toLowerCase();
       this.setState({
         query: query,
-        displayMarkers:this.props.locations
+        displayMarkers:this.props.locations,
+        noMarkerMsg: []
       });
   
       //TODO: Add male/female filter so that "male" doesn't bring up all results
@@ -113,6 +115,13 @@ export class MapContainer extends Component {
         let displayMarkers = this.props.locations.filter((cat) => {
           return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
         });
+
+        if (displayMarkers.length === 0){
+          console.log("no markers");
+          let noMarkerMsg = `There are no cats that meet your search`;
+          this.setState({noMarkerMsg: noMarkerMsg});
+        }
+
         this.setState({displayMarkers: displayMarkers}, 
           () => {
             this.updateMarkers(this.state.displayMarkers);
@@ -144,8 +153,8 @@ export class MapContainer extends Component {
           google={this.props.google}
           // style={style}
           initialCenter={{
-            lat: 42.2646788,
-            lng: -83.7388272
+            lat: 42.263210,
+            lng: -83.739470
           }}
           zoom={16}
           onClick={this.onMapClicked}
@@ -190,6 +199,7 @@ export class MapContainer extends Component {
               markerProps={this.state.markerProps}
               onMarkerClick={this.onMarkerClick}
               markers={this.state.markers}
+              noMarkerMsg={this.state.noMarkerMsg}
             />
         </div>
       

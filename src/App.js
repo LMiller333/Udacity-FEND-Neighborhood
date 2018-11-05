@@ -37,7 +37,7 @@ class App extends Component {
 
     const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
     
-    let matchingCats = this.state.locations.map((cat,i) => {
+    this.state.locations.map((cat,i) => {
 
       let origCat = this.state.locations[i];
 
@@ -60,7 +60,7 @@ class App extends Component {
         success: function (data){
 
           let matchingCat = data.petfinder.pet;
-          let matchingCatMsg = `${matchingCat.name.$t} is the same sex and breed as ${origCat.name}. This ${matchingCat.age.$t.toLowerCase()} cat lives in ${matchingCat.contact.city.$t}, ${matchingCat.contact.state.$t}.`;
+          let matchingCatMsg = `${matchingCat.name.$t} is  a ${origCat.sex} ${origCat.breed} like ${origCat.name}. This ${matchingCat.age.$t.toLowerCase()} cat lives in ${matchingCat.contact.city.$t}, ${matchingCat.contact.state.$t}.`;
           let linkToPetfinder = `https://www.petfinder.com/petdetail/${matchingCat.id.$t}`;
           let origCatId = origCat.id;
           
@@ -70,7 +70,7 @@ class App extends Component {
             matchingCatMsg,
             linkToPetfinder
           }
-
+          
           this.state.matchingCats.push(matchingCatAll);
           console.log(this.state.matchingCats);
 
@@ -81,8 +81,6 @@ class App extends Component {
       });
 
     });
-
-
 
   };
 

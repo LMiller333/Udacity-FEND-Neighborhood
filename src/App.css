@@ -1,15 +1,34 @@
+.mapcontainer{
+  height:100vh !important;
+  width:100vw !important;
+  display:grid;
+  grid-template-columns: 40vw 60vw;
+  grid-template-rows: 10vh 90vh;
+  grid-template-areas:
+  "navbar navbar"
+  "list googleMap";
+}
+
 .list{
-  float:left;
-  width:40%;
+  width:100%;
+  grid-area: list;
 }
 
 .googleMap{
-  float:right;
-  width:60%;
+  /* float:right; */
+  /* width:60%; */
+  grid-area: googleMap;
+  
+}
+
+#root > div > div > div.mapcontainer > div.googleMap > div {
+  width:60vw !important;
+  height:90vh !important;
 }
 
 .navbar{
   background: black;
+  grid-area: navbar;
 }
 
 .listing{
@@ -23,6 +42,18 @@ h2{
   margin:0;
 }
 
+h3{
+  margin:0;
+}
+
+h4{
+  margin:0;
+}
+
+.catHeader h3, .catHeader p{
+  display:inline;
+}
+
 p{
   margin:0;
 }
@@ -30,4 +61,40 @@ p{
 .infowindow{
   list-style-type:none;
   max-width:200px;
+}
+
+.opensNewWindow{
+  height:12px;
+}
+
+.catPicture{
+  margin: 0 0 0 20px;
+}
+
+.search-input{
+  margin: 2vh;
+}
+
+.search-input input {
+  width: 90%;
+  height:5vh;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .mapcontainer{
+    display:grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 10vh 60vh 90vh;
+    grid-template-areas:
+    "navbar"
+    "googleMap"
+    "list";
+  }
+
+  #root > div > div > div.mapcontainer > div.googleMap > div {
+    width:100vw !important;
+    height:60vh !important;
+  }
+
 }
