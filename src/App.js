@@ -4,7 +4,7 @@ import Search from './components/Search.js';
 import List from './components/List.js';
 import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
-import $ from 'jquery'; 
+import $ from 'jquery';
 
 class App extends Component {
 
@@ -25,7 +25,8 @@ class App extends Component {
       matchingCatSex : null,
       matchingCatId : null,
       matchingCatCity : null,
-      matchingCatState : null
+      matchingCatState : null,
+      matchingCatText: null
     }
     this.updateQuery = this.updateQuery.bind(this);
     this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -43,8 +44,11 @@ class App extends Component {
       selectedCat: props,
       activeMarker: marker,
     //   showingInfoWindow: true
+ 
     });
 
+    // console.log(props);
+    // console.log(marker);
 
     console.log("running ajax");
     const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
@@ -65,16 +69,18 @@ class App extends Component {
         cache: false,
         success: function (data){
             let matchingCat = data.petfinder.pet;
+            let matchingCatText = `${matchingCat.name.$t} is a ${matchingCat.breeds.breed.$t}`;
             // console.log(data);
             // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
             this.setState({
               matchingCat: matchingCat,
-              // matchingCatName : matchingCat.name.$t,
-              // matchingCatBreed : matchingCat.breeds.breed.$t,
-              // matchingCatSex : matchingCat.sex.$t,
-              // matchingCatId : matchingCat.id.$t,
-              // matchingCatCity : matchingCat.contact.city.$t,
-              // matchingCatState : matchingCat.contact.state.$t,
+              matchingCatText: matchingCatText,
+              matchingCatName : matchingCat.name.$t,
+              matchingCatBreed : matchingCat.breeds.breed.$t,
+              matchingCatSex : matchingCat.sex.$t,
+              matchingCatId : matchingCat.id.$t,
+              matchingCatCity : matchingCat.contact.city.$t,
+              matchingCatState : matchingCat.contact.state.$t,
               showingInfoWindow: true,
               });
 
@@ -126,29 +132,23 @@ class App extends Component {
           <Search
             query={this.state.query}
             updateQuery={this.updateQuery}/>
-            <MapContainer
-              displayMarkers={this.state.displayMarkers}
-              onMapClicked={this.onMapClicked}
-              onMarkerClick={this.onMarkerClick}
-              activeMarker={this.state.activeMarker}
-              selectedCat={this.state.selectedCat}
-              matchingCat={this.state.matchingCat}
-              // matchingCatName={this.state.matchingCatName}
-              // matchingCatBreed={this.state.matchingCatBreed}
-              // matchingCatSex={this.state.matchingCatSex}
-              // matchingCatId ={this.state.matchingCatId}
-              // matchingCatCity ={this.state.matchingCatCity}
-              // matchingCatState ={this.state.matchingCatState}
-              showingInfoWindow={this.state.showingInfoWindow}
-              markers={this.state.markers}
-            />
-          <List
+          <MapContainer
             displayMarkers={this.state.displayMarkers}
+            onMapClicked={this.onMapClicked}
+            onMarkerClick={this.onMarkerClick}
             activeMarker={this.state.activeMarker}
             selectedCat={this.state.selectedCat}
+            matchingCat={this.state.matchingCat}
+            matchingCatText={this.state.matchingCatText}
+            matchingCatName={this.state.matchingCatName}
+            matchingCatBreed={this.state.matchingCatBreed}
+            matchingCatSex={this.state.matchingCatSex}
+            matchingCatId ={this.state.matchingCatId}
+            matchingCatCity ={this.state.matchingCatCity}
+            matchingCatState ={this.state.matchingCatState}
             showingInfoWindow={this.state.showingInfoWindow}
+            markers={this.state.markers}
           />
-
       </div>
     );
   }

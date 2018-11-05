@@ -12,14 +12,15 @@ class List extends Component {
             key={cat.id}
             breed={cat.breed}
             sex={cat.sex}
+            listItemClicked={this.props.listItemClicked}
           />
     );
 
     return (
-      <div className="list">
-        Cats
+      <div>
         {listings}
       </div>
+
     )
   }
 }

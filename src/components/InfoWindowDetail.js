@@ -12,7 +12,7 @@ import React, { Component } from 'react';
     // const state = this.props.matchingCatState;
     // const id = this.props.matchingCatId;
 
-    // const text = `${name} is a ${sex} ${breed} like ${this.props.selectedCat.name}. ${pronoun} lives in ${city}, ${state}.`
+    // // const text = `${name} is a ${sex} ${breed} like ${this.props.selectedCat.name}. ${pronoun} lives in ${city}, ${state}.`
 
     // const petFinderUrl = `https://www.petfinder.com/petdetail/${id}`;
 
@@ -25,7 +25,7 @@ import React, { Component } from 'react';
                 <h3>Looking for a cat like {this.props.selectedCat.name}?</h3>
             </div>
             <div className="petfinderInfo">
-                <p>{this.props.matchingCat.name}</p>
+                <p>{this.props.matchingCatText}</p>
                 <br/><br/>
                 {/* <a href={petFinderUrl} target="_blank">Visit PetFinder to Learn More</a> */}
             </div>
