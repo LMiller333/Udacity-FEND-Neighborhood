@@ -15,8 +15,8 @@ class App extends Component {
     super();
     this.state = {
       locations: CatLocations.cats,
-      displayMarkers: CatLocations.cats,
-      query: "",
+      // displayMarkers: CatLocations.cats,
+      // query: "",
       matchingCatName: null,
       matchingCatBreed: null,
       matchingCatSex : null,
@@ -25,7 +25,7 @@ class App extends Component {
       matchingCatState : null,
       matchingCatText: null
     }
-    this.updateQuery = this.updateQuery.bind(this);
+    // this.updateQuery = this.updateQuery.bind(this);
     // this.onMarkerClick = this.onMarkerClick.bind(this);
     // this.onMapClicked = this.onMapClicked.bind(this);
     // this.onListClick = this.onListClick.bind(this);
@@ -84,25 +84,25 @@ class App extends Component {
 
 
 
-  updateQuery = (query) => {
-    let queryLc = query.toLowerCase();
-    this.setState({ query: query});
+  // updateQuery = (query) => {
+  //   let queryLc = query.toLowerCase();
+  //   this.setState({ query: query});
 
-    //TODO: Add male/female filter so that "male" doesn't bring up all results
+  //   //TODO: Add male/female filter so that "male" doesn't bring up all results
 
-    if (query){
-      console.log("processing query");
-      let displayMarkers = this.state.locations.filter((cat) => {
-        return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
-      });
-      console.log(displayMarkers);
-    this.setState({displayMarkers: displayMarkers});
-    }
-    else {
-      this.setState({displayMarkers:this.state.locations})
-    }
+  //   if (query){
+  //     console.log("processing query");
+  //     let displayMarkers = this.state.locations.filter((cat) => {
+  //       return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
+  //     });
+  //     console.log(displayMarkers);
+  //   this.setState({displayMarkers: displayMarkers});
+  //   }
+  //   else {
+  //     this.setState({displayMarkers:this.state.locations})
+  //   }
 
-    }
+  //   }
  
   
 
@@ -112,15 +112,7 @@ class App extends Component {
 
     return (
       <div className="App">
-          <Search
-            query={this.state.query}
-            updateQuery={this.updateQuery}/>
           <MapContainer
-            displayMarkers={this.state.displayMarkers}
-            onMapClicked={this.onMapClicked}
-            onMarkerClick={this.onMarkerClick}
-            // activeMarker={this.state.activeMarker}
-            // selectedCat={this.state.selectedCat}
             matchingCat={this.state.matchingCat}
             matchingCatText={this.state.matchingCatText}
             matchingCatName={this.state.matchingCatName}

@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import {Map, GoogleApiWrapper, InfoWindow} from 'google-maps-react';
 import InfoWindowDetail from './InfoWindowDetail.js';
 import List from './List.js';
+import Search from './Search.js';
 
  
 export class MapContainer extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       map: null,
       markers: [],
       markerProps: [],
       selectedCat: null,
       activeMarker: null,
-      showingInfoWindow: false
+      showingInfoWindow: false,
+      displayMarkers: this.props.locations,
+      query: ""
     }
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
   }
 
 
@@ -80,7 +84,7 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-    console.log(this.state.selectedCat);
+    // console.log(this.state.selectedCat);
   };
 
   
@@ -94,7 +98,36 @@ export class MapContainer extends Component {
       }
     };
 
+    updateQuery = (query) => {
+      let queryLc = query.toLowerCase();
+      this.setState({
+        query: query,
+        displayMarkers:this.props.locations
+      });
+      console.log(this.state.displayMarkers);
   
+      //TODO: Add male/female filter so that "male" doesn't bring up all results
+  
+      if (query){
+        console.log("query is " + query );
+        let displayMarkers = this.props.locations.filter((cat) => {
+          return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
+        });
+        console.log(displayMarkers);
+        this.setState({displayMarkers: displayMarkers}, 
+          () => {
+            this.updateMarkers(this.state.displayMarkers);
+        });
+      }
+      else {
+        this.setState({displayMarkers: this.props.locations}, 
+          () => {
+            this.updateMarkers(this.props.locations);
+        });
+      }
+  
+      }
+   
   
     render() {
 
@@ -102,6 +135,10 @@ export class MapContainer extends Component {
   
       return (
       <div className="mapcontainer">
+
+        <Search
+            query={this.state.query}
+            updateQuery={this.updateQuery}/>
         
         <div className="googleMap">
           <Map
@@ -144,7 +181,7 @@ export class MapContainer extends Component {
 
         <div className="list">
           <List
-              displayMarkers={this.props.displayMarkers}
+              displayMarkers={this.state.displayMarkers}
               activeMarker={this.state.activeMarker}
               selectedCat={this.state.selectedCat}
               showingInfoWindow={this.state.showingInfoWindow}
