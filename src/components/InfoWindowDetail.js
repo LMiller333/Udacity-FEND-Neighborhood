@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import newwindowicon from '../images/new-window.png';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faExternalLinkAlt)
 
  class InfoWindowDetail extends Component {
 
@@ -9,10 +13,19 @@ import newwindowicon from '../images/new-window.png';
     let matchingCatMsg = null;
     let linkToPetfinder = null;
     let src = null;
+    let alt = null;
+    let name = null;
+    let breed = null;
+    let sex = null;
 
     if (this.props.sc){
         scId = this.props.sc.key;
         src = this.props.sc.img;
+        alt = this.props.sc.alt;
+        name = this.props.sc.name;
+        breed = this.props.sc.breed;
+        sex = this.props.sc.dsex;
+        console.log(alt);
     }
 
     let matchedCat = this.props.matchingCats.find(function(cat) {
@@ -37,19 +50,20 @@ import newwindowicon from '../images/new-window.png';
     // const id = this.props.matchingCatId;
 
 
+
    return (
-        <li className="infowindow" id={this.props.sc && this.props.sc.key}>
+        <li className="infowindow" id={scId}>
             <div className="neighborCatInfo">
             <div className="catHeader">
-                <h3>{this.props.sc && this.props.sc.name} </h3>
-                <p>({this.props.sc && this.props.sc.sex} {this.props.sc && this.props.sc.breed})</p>
+                <h2>{name} </h2>
+                <p>({sex} {breed})</p>
             </div>
-                <img src={src} alt={this.props.sc && this.props.sc.name} className="catPicture" height="auto" width="100%"/>
-                <h4>Looking for a cat like {this.props.sc && this.props.sc.name}?</h4>
+                <img src={src} alt={alt} className="catPicture" height="auto" width="100%"/>
+                <h3>Looking for a cat like {name}?</h3>
             </div>
             <div className="petfinderInfo">
                 <p>{matchingCatMsg}</p>
-                <p><a href={linkToPetfinder} target="_blank" rel="noopener noreferrer">More from PetFinder <img src={newwindowicon} alt="opens in new window" className="opensNewWindow"/></a></p>
+                <p><a href={linkToPetfinder} target="_blank" rel="noopener noreferrer" aria-label="Opens in new window">More from PetFinder <FontAwesomeIcon icon="external-link-alt" className="opens-new-window-icon"/></a></p>
             </div>
         </li>
     

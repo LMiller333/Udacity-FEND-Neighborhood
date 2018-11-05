@@ -6,10 +6,12 @@
         "name": "Mimo",
         "breed":"Tabby",
         "sex":"M",
+        "displaysex":"Male",
         "position": {
           "lat": 42.264200,
           "lng": -83.738450
         },
+        "imgalt": "Picture of Mimo, a slim tabby, playing on the ground",
         "img": "https://lh3.googleusercontent.com/RYyp-M0acCbF3Zt72L_HVIZwIz-jE5zu-zO7n6P0VXrWDBqmKbXMTiNYdhGMSFvFlEpdBc51Jwszqq_ClTJliPTEAZym0Zks0oluYKe1IogtEJ1QhQRw62E2KyA3lRh3JcvVrz-JovWty_lYRiOS0vFCln2cmbtKXbg8smiTHFkQ0PcuTl6VtKkLL9vdQZRvAe-AbVPZHnkM1u2xQ2ISrtygucWuxLRJFifQDWXhIA1gqiZtDN99LS_by2LleaJZNbxHPhzv8rfWh_MHQR1BjxUl_PCMm7X-oEQ5z99-Ia3K-fgzkRPYdklO-xRK2K1rlFTGFzqQMhxpjQ5wz9oxnIXdACWTwXj7QmTVrhvwnrQsyMz8IeFX5Ptnd95ezUqB8Dx2ARhOPd-8dpT4doGZgaGImQW7hVO2aFtDiSYzuHPmGe5NpQ9fo9nmAVnoqMqE6ZsaWx9RGNM6vY4XBwI92heMePDUkHhc-blqAPKn8cUKbYezUcRHPRXMnDZXWBu2s1x-3ZAHpg2B-mHFhmE20R34q0hKsB60TQSAva03OijFo2oF_CtX2uiGu-1D60rWXpNdWsvZle_rWxFGul2AdGyLu5dDQfmUv839ChhmcKn3RPG3wzHLT6qwwI5QADSz0k11_HLiLNZJwS1TVtBS0RDPeZRp3ue02XhcoYcnwgVwnbpZJD1u9BHjxIDYx0Gkg-7Oyc9mhmSp5iOZ8g=w1024-h768-no"
       },
       {
@@ -17,10 +19,12 @@
         "name": "Tuco",
         "breed":"Tabby",
         "sex":"M",
+        "displaysex":"Male",
         "position": {
           "lat": 42.262190,
           "lng": -83.738420
         },
+        "imgalt": "Picture of Varona, a small calico, lounging on sofa with one paw over her eyes",
         "img": "https://lh3.googleusercontent.com/eEL7gNjjAbsajo5JH5vEjwSSsMPxJA6NWvgQTZcTau8YWr4BmdFoqqYut7fd7LIYXHWEKzEVzZfTBjLOvWpF67CpWc_gQOLMfP7cH-hHarPL1DfmmDMUwncmepH7DhWLX7kN6-hmrDaQsiG3Zy_BZppwuowuyY1sahPgmXIr3sCWpLxb_tiTHIgP2HMFTBLZ0BlYnsE3Xb-KSEvUBjEEKcHDEvZtJG_XXYJF2vD79NqQ9JAs9GZyhOfUKz-5IfbBVHEtNdP2iEIvbBZhmDTULyHvEP4jRc-8OlqUnEoeCmMldLALoTkJnibZUb07IqHlrbU-2hBnGgMOa8PG_Bznya-HDZUR7VPcPGMg-Z8JACM60-BKV6vCs2dbarheoojjpdTmW5KmQwHCCJGR6DivvFIhjDjS57fySuLlViZUGZMROeJUQ5iUPzpk40-UXJJ73cmW9KYCusCMI3HKTGmHALNbkWRT_ndLQkFoUoHL6EZ3Gs2UxZDa4EV7H7YN342F1r-31IOQWVmHXusYVH90QqYlqcP2Z_Wn4C56KY5QT6t9fRvfiWAH1XNpqGksWNwZXSmnmVgajZeDZALqcgQcW8CjJj3Csbo0fopi4g-iHwS-qJ-bfpVOvMt1sr-Jea1Xye6Q-t54wiuanCw2M15q6pn_YQOYbHWXG9TLYUBdKqOisYVO9JIaqkgm9-d2u1xfM4J4N2vkKLUVj7wSpw=w1496-h1122-no"
       },
       {
@@ -28,21 +32,26 @@
         "name": "Varona",
         "breed":"Calico",
         "sex":"F",
+        "displaysex":"Female",
         "position": {
           "lat": 42.264180,
           "lng": -83.739500
         },
+        "imgalt": "Picture of Tuco, a large tabby, looking pensively past the camera",
         "img": "https://lh3.googleusercontent.com/TbplMZ744-tGxzMhpr9ExM7upkUB0wWszSqGICBbSSN9sB2CWfVxmib2fxCLC5hPvEQgQPHFl8yACJzdvDcH1cEU_TyKKaHegdHV9Z5zPm6HFDkH3CDSHA0tRBGnApm8ktAtli_kLxI0rsLaQ21eDu6urUbZWlFiZIPCAoK4OMA-FAaEN7Q8tdgtI3w4gDQ7cBAqaLoBu0qbUKW3VxvigJEZbMiirOhxDKONjE46ETDbyeEy63C1g-lcrt3ahXH91magxakQW5n-hcVmzVpaXLmjKX0H-xMNYYe5PfzPSoVu1nB4__4S0QkLX7J_JmKNa6X86JXyGNpC03TulDwlCo2VdYDoCS6jlfIfkeYvQC9IGfY-viFattIivu3E8jAWwKypFXC32B5jnWw2Q5ZpqNUJ4cwapp4pC69PAtrb5GI0enkTJIEvlOZRFbQkUJxF6g2W8r6GmURryrR7UqdxI_AhLe8sTMu3Mhp2KXn7qzzTK0I4e4HIKmSliOVqPu772t2tfRfNRSD1wm9DjNv1EOCtXv2hLuBVsxSWneyF_7dRtVWrr9cWNZcXVEHy_UrSENtsFAg6wPQxNTlPE0JdkZFdVszexrpgV9Q34RdrbjhcBoCZYHde-5lWPrxeyPx0jazpUfo_ETLAl42r6WaNLogzahvTXaED5bKRqrp6aFjIr8Pgxd-JmXvCHW4h6CFwzqXvs9xhRlFwEUvYrw=w1024-h768-no"
+ 
       },
       {
         "id":4,
         "name": "Irwin",
         "breed":"Domestic Short Hair",
         "sex":"M",
+        "displaysex":"Male",
         "position": {
           "lat":  42.263240,
           "lng": -83.736420
         },
+        "imgalt": "Irwin takes a cat nap on the buffet, with paws outstretched",
         "img": "https://lh3.googleusercontent.com/0jdnej0NOg6ihrkBbAU5eyf2q2CVVxgWQNCkyscZ1_1getmErBd5lvMa-RczrBTTc9P9qXQwEtRxVoyzTqtcDVActN81a62PdqKNaNNPg09PcJTWCKPEJdMXYkW5h6nfQS-Qk_Kaifz5oAZjntDmm1z3ldRaxbMtmrJAM4xlQUnJ9soZmJY-0S2u0DhQ5VCLSSfAtgmcv637y2_ucBpEQzaUIg7bHHB_9JaoqDqseq01Xl1ToqAvime5AwKAFKzDs4JUXvnsrjUegAGtOAQ6pVuJIgp_8pu142uxIHw08PZVZInJevsneOFmrXQNnbIqOfKH72vnCGIFIZ3waU-cV77wa_aJJHHNUZAYGEJwp553lrIYGXlzuOWomqyBdzFgIgioL7ilP2f-IdUhINI2Rz8rIZFof_UMp9ZAog0JoV0cnlD1ukU2Qjfav-d6PHmZA62fRL7v-nfwhM7qgW5VJ4aYyHCxy2B0DZ6KVYuGbWmmmzoq498hkS2AMwe3DE4k1io5bOqQCyZhQYwgnPSaMI7LfOfYbHm-eJdyAkBG9YsaJLyGFbXGfbTN5eULl1FVEQ1O8TFZKkHTtOfeEVNDSe8pJd30qDmmgBAfESW-g5aPDpC7vye8R9L88_ObwMHhTj2scTOGcSWzkF_w6oaJbHgkg7XXryZykIf9JnW4S42llUIx8ZUpt844ymg186xXtFamuO7w6f6foDYMVA=w1546-h1122-no"
       },
       {
@@ -50,10 +59,12 @@
         "name": "Josie",
         "breed":"Tortoiseshell",
         "sex":"F",
+        "displaysex":"Male",
         "position": {
           "lat":  42.263210,
           "lng": -83.739470
         },
+        "imgalt": "Something about Josie",
         "img": "https://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg"
       },
       {
@@ -61,10 +72,12 @@
         "name": "Walter",
         "breed":"Domestic Long Hair",
         "sex":"M",
+        "displaysex":"Male",
         "position": {
           "lat": 42.261945,
           "lng": -83.741500
         },
+        "imgalt": "Something about Walter",
         "img": "https://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg"
       }
     ]

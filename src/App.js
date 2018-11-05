@@ -25,15 +25,11 @@ class App extends Component {
   }
 
   componentDidMount(){
-    
-    console.log("component mounted");
+    document.title = "Neighborhood Cat Map"
     this.getMatchingCats();
-
-
   }
 
   getMatchingCats =  () => {
-    console.log("getting matching cats");
 
     const pfApiKey = process.env.REACT_APP_PETFINDER_API_KEY;
     
@@ -60,7 +56,7 @@ class App extends Component {
         success: function (data){
 
           let matchingCat = data.petfinder.pet;
-          let matchingCatMsg = `${matchingCat.name.$t} is  a ${origCat.sex} ${origCat.breed} like ${origCat.name}. This ${matchingCat.age.$t.toLowerCase()} cat lives in ${matchingCat.contact.city.$t}, ${matchingCat.contact.state.$t}.`;
+          let matchingCatMsg = `${matchingCat.name.$t} is  a ${origCat.displaysex} ${origCat.breed} like ${origCat.name}. This ${matchingCat.age.$t.toLowerCase()} cat lives in ${matchingCat.contact.city.$t}, ${matchingCat.contact.state.$t}.`;
           let linkToPetfinder = `https://www.petfinder.com/petdetail/${matchingCat.id.$t}`;
           let origCatId = origCat.id;
           
@@ -72,7 +68,6 @@ class App extends Component {
           }
           
           this.state.matchingCats.push(matchingCatAll);
-          console.log(this.state.matchingCats);
 
         }.bind(this),
         error: function(xhr, status, err) {
@@ -81,7 +76,6 @@ class App extends Component {
       });
 
     });
-
   };
 
  
@@ -96,19 +90,19 @@ class App extends Component {
 
     return (
       <div className="App">
-          <MapContainer
-            matchingCat={this.state.matchingCat}
-            matchingCats={this.state.matchingCats}
-            matchingCatText={this.state.matchingCatText}
-            matchingCatName={this.state.matchingCatName}
-            matchingCatBreed={this.state.matchingCatBreed}
-            matchingCatSex={this.state.matchingCatSex}
-            matchingCatId ={this.state.matchingCatId}
-            matchingCatCity ={this.state.matchingCatCity}
-            matchingCatState ={this.state.matchingCatState}
-            // showingInfoWindow={this.state.showingInfoWindow}
-            locations={this.state.locations}
-          />
+        <MapContainer
+          matchingCat={this.state.matchingCat}
+          matchingCats={this.state.matchingCats}
+          matchingCatText={this.state.matchingCatText}
+          matchingCatName={this.state.matchingCatName}
+          matchingCatBreed={this.state.matchingCatBreed}
+          matchingCatSex={this.state.matchingCatSex}
+          matchingCatId ={this.state.matchingCatId}
+          matchingCatCity ={this.state.matchingCatCity}
+          matchingCatState ={this.state.matchingCatState}
+          // showingInfoWindow={this.state.showingInfoWindow}
+          locations={this.state.locations}
+        />
       </div>
     );
   }

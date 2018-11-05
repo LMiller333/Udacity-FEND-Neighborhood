@@ -49,9 +49,10 @@ export class MapContainer extends Component {
         i,
         name: cat.name,
         breed: cat.breed,
-        sex: cat.sex,
         key: cat.id,
-        img: cat.img
+        img: cat.img,
+        alt: cat.imgalt,
+        dsex: cat.displaysex
       };
 
       markerProps.push(selectedCat);
@@ -143,6 +144,9 @@ export class MapContainer extends Component {
   
       return (
       <div className="mapcontainer">
+        <div className="page-title">
+          <h1>Neighborhood Cat Map</h1>
+        </div>
 
         <Search
             query={this.state.query}
@@ -150,15 +154,17 @@ export class MapContainer extends Component {
         
         <div className="googleMap">
           <Map
+          role="application"
+          aria-label="map"
           google={this.props.google}
-          // style={style}
           initialCenter={{
             lat: 42.263210,
             lng: -83.739470
           }}
           zoom={16}
           onClick={this.onMapClicked}
-          onReady={this.mapReady}>
+          onReady={this.mapReady}
+          >
     
             {/* {this.googleMarkers} */}
     
@@ -200,6 +206,7 @@ export class MapContainer extends Component {
               onMarkerClick={this.onMarkerClick}
               markers={this.state.markers}
               noMarkerMsg={this.state.noMarkerMsg}
+              locations={this.props.locations}
             />
         </div>
       

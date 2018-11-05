@@ -3,10 +3,15 @@ import React, { Component } from 'react';
  class Listing extends Component {
 
 
+
   render() {
     return (
-      <li className="listing" id={this.props.id} onClick={this.props.listItemClicked}><h3>{this.props.name}</h3>
-      <p>{this.props.sex} {this.props.breed}</p></li>
+      <li className="listing">
+        <button onClick={this.props.listItemClicked} id={this.props.id} tabIndex={this.props.id}>
+          <h2>{this.props.name}</h2>
+          <p>{this.props.dsex} {this.props.breed}</p>
+        </button>
+      </li>
     )
   }
 }

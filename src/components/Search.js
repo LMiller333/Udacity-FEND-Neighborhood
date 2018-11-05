@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGhost } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faGhost)
+library.add(faSearch)
 
 class Search extends Component {
 
@@ -16,10 +16,11 @@ class Search extends Component {
       <div className="navbar">
         <div className="search">
           <div className="search-input">
-          <label>
-            <FontAwesomeIcon icon="ghost" className="search-icon" />
-            <input type="text" placeholder="Search for a cat by name, breed, or sex" value={this.props.query} onChange={ (event) => this.props.updateQuery(event.target.value)}/>
-          </label>
+            <label for="search-input-field">
+            <span className="sr-only">Filter Search</span>
+            <FontAwesomeIcon icon="search" className="search-icon" />
+            </label>
+            <input id="search-input-field"tabIndex="1" type="text" placeholder="Start typing a cat or breed" value={this.props.query} onChange={ (event) => this.props.updateQuery(event.target.value)}/>
           </div>
         </div>
       </div>

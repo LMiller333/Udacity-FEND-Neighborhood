@@ -22,14 +22,14 @@ class List extends Component {
             id={cat.id}
             key={cat.id}
             breed={cat.breed}
-            sex={cat.sex}
+            dsex={cat.displaysex}
             listItemClicked={this.listItemClicked}
           />
     );
 
     return (
       <div>
-        <h2>Cats</h2>
+        <p>Showing {this.props.displayMarkers.length} of {this.props.locations.length}</p>
         <p>{this.props.noMarkerMsg}</p>
         {listings}
       </div>
