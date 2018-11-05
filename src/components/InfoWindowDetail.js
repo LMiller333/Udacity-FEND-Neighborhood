@@ -10,6 +10,7 @@ library.add(faExternalLinkAlt)
   render() {
 
     let scId = null;
+    let scKey = null;
     let matchingCatMsg = null;
     let linkToPetfinder = null;
     let src = null;
@@ -19,17 +20,17 @@ library.add(faExternalLinkAlt)
     let sex = null;
 
     if (this.props.sc){
-        scId = this.props.sc.key;
+        scKey = this.props.sc.key;
         src = this.props.sc.img;
         alt = this.props.sc.alt;
         name = this.props.sc.name;
         breed = this.props.sc.breed;
         sex = this.props.sc.dsex;
-        console.log(alt);
+        scId = this.props.sc.name + this.props.sc.key;
     }
 
     let matchedCat = this.props.matchingCats.find(function(cat) {
-        return cat.origCatId === scId;
+        return cat.origCatId === scKey;
       });
 
     if (matchedCat){
@@ -40,16 +41,6 @@ library.add(faExternalLinkAlt)
         matchingCatMsg = "We're sorry, PetFinder data is currently unavailable";
         linkToPetfinder = "http://petfinder.com";
     }
-    // console.log(this.props.matchingCats);
-    // const name = this.props.matchingCatName;
-    // const breed = this.props.matchingCatBreed;
-    // const sex = (this.props.matchingCatSex === "M") ? "Male" : "Female";
-    // const pronoun = (this.props.matchingCatSex === "M") ? "He" : "She";
-    // const city = this.props.matchingCatCity;
-    // const state = this.props.matchingCatState;
-    // const id = this.props.matchingCatId;
-
-
 
    return (
         <li className="infowindow" id={scId}>

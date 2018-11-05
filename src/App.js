@@ -4,23 +4,15 @@ import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
 import $ from 'jquery';
 
-class App extends Component {
+//TODO: Update cat photos in CatLocations.json
 
-  //I know it seems excessive to have a prop for each attribute of the matchingCat results, but
-  //I was experiencing really odd errors when trying to access nested attributes in child components
+class App extends Component {
 
   constructor(){
     super();
     this.state = {
       locations: CatLocations.cats,
       matchingCats: [],
-      matchingCatName: null,
-      matchingCatBreed: null,
-      matchingCatSex : null,
-      matchingCatId : null,
-      matchingCatCity : null,
-      matchingCatState : null,
-      matchingCatText: null
     }
   }
 
@@ -91,16 +83,7 @@ class App extends Component {
     return (
       <div className="App">
         <MapContainer
-          matchingCat={this.state.matchingCat}
           matchingCats={this.state.matchingCats}
-          matchingCatText={this.state.matchingCatText}
-          matchingCatName={this.state.matchingCatName}
-          matchingCatBreed={this.state.matchingCatBreed}
-          matchingCatSex={this.state.matchingCatSex}
-          matchingCatId ={this.state.matchingCatId}
-          matchingCatCity ={this.state.matchingCatCity}
-          matchingCatState ={this.state.matchingCatState}
-          // showingInfoWindow={this.state.showingInfoWindow}
           locations={this.state.locations}
         />
       </div>

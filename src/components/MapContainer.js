@@ -4,6 +4,9 @@ import InfoWindowDetail from './InfoWindowDetail.js';
 import List from './List.js';
 import Search from './Search.js';
 
+//TODO: Add animation on marker click
+//TODO: Add NoMapDisplay error handling
+
  
 export class MapContainer extends Component {
 
@@ -79,7 +82,9 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     });
-    // console.log(this.state.selectedCat);
+
+
+
   };
 
   
@@ -166,8 +171,6 @@ export class MapContainer extends Component {
           onReady={this.mapReady}
           >
     
-            {/* {this.googleMarkers} */}
-    
             <InfoWindow
               marker={this.state.activeMarker}
               visible={this.state.showingInfoWindow}
@@ -178,14 +181,6 @@ export class MapContainer extends Component {
                 <InfoWindowDetail
                 sc={scProps}
                 matchingCats={this.props.matchingCats}
-                matchingCat={this.state.matchingCat}
-                matchingCatText={this.props.matchingCatText}
-                matchingCatName={this.props.matchingCatName}
-                matchingCatBreed={this.props.matchingCatBreed}
-                matchingCatSex={this.props.matchingCatSex}
-                matchingCatId ={this.props.matchingCatId}
-                matchingCatCity ={this.props.matchingCatCity}
-                matchingCatState ={this.props.matchingCatState}
                 >
                 
                 </InfoWindowDetail>

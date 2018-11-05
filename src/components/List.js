@@ -12,6 +12,7 @@ class List extends Component {
     let scMarker = this.props.markers[scProps.i];
 
     this.props.onMarkerClick(scProps, scMarker,e);
+
   }
 
 
