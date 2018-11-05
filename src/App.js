@@ -61,24 +61,18 @@ class App extends Component {
 
           let matchingCat = data.petfinder.pet;
           let matchingCatMsg = `${matchingCat.name.$t} is the same sex and breed as ${origCat.name}. This ${matchingCat.age.$t.toLowerCase()} cat lives in ${matchingCat.contact.city.$t}, ${matchingCat.contact.state.$t}.`;
-          const linkToPetfinder = `https://www.petfinder.com/petdetail/${matchingCat.id.$t}`;
-          console.log(matchingCat);
-          console.log(linkToPetfinder);
-          this.state.matchingCats.push(matchingCat);
+          let linkToPetfinder = `https://www.petfinder.com/petdetail/${matchingCat.id.$t}`;
+          let origCatId = origCat.id;
+          
+          let matchingCatAll = {
+            origCatId,
+            matchingCat,
+            matchingCatMsg,
+            linkToPetfinder
+          }
 
-          // let matchingCatText = `${matchingCat.name.$t} is a ${matchingCat.breeds.breed.$t}`;
-          // console.log(data);
-          // console.log(matchingCat.name,matchingCat.sex, matchingCat.breeds.breed, matchingCat.age, matchingCat.contact.city, matchingCat.contact.state);
-          // this.setState({
-          //   matchingCat: matchingCat,
-          //   matchingCatText: matchingCatText,
-          //   matchingCatName : matchingCat.name.$t,
-          //   matchingCatBreed : matchingCat.breeds.breed.$t,
-          //   matchingCatSex : matchingCat.sex.$t,
-          //   matchingCatId : matchingCat.id.$t,
-          //   matchingCatCity : matchingCat.contact.city.$t,
-          //   matchingCatState : matchingCat.contact.state.$t
-          //   });
+          this.state.matchingCats.push(matchingCatAll);
+          console.log(this.state.matchingCats);
 
         }.bind(this),
         error: function(xhr, status, err) {
