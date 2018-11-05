@@ -49,7 +49,8 @@ export class MapContainer extends Component {
         name: cat.name,
         breed: cat.breed,
         sex: cat.sex,
-        key: cat.id
+        key: cat.id,
+        img: cat.img
       };
 
       markerProps.push(selectedCat);
@@ -89,6 +90,15 @@ export class MapContainer extends Component {
           })
       }
     };
+
+    onInfoWindowClose = (props) =>{
+      if (this.state.showingInfoWindow) {
+        this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+        })
+    }
+    }
 
     updateQuery = (query) => {
       let queryLc = query.toLowerCase();
@@ -148,6 +158,7 @@ export class MapContainer extends Component {
               visible={this.state.showingInfoWindow}
               showingInfoWindow={this.state.showingInfoWindow}
               activeMarker={this.state.activeMarker}
+              onClose={this.onInfoWindowClose}
               >
                 <InfoWindowDetail
                 sc={scProps}
