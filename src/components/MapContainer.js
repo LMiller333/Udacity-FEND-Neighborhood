@@ -6,14 +6,25 @@ import List from './List.js';
  
 export class MapContainer extends Component {
 
-  state = {
-    map: null,
-    markers: [],
-    markerProps: [],
-    selectedCat: null,
-    activeMarker: null,
-    showingInfoWindow: false,
-  };
+  constructor(){
+    super();
+    this.state = {
+      map: null,
+      markers: [],
+      markerProps: [],
+      selectedCat: null,
+      activeMarker: null,
+      showingInfoWindow: false
+    }
+    this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.onMapClicked = this.onMapClicked.bind(this);
+  }
+
+
+
+      // this.onMarkerClick = this.onMarkerClick.bind(this);
+    // this.onMapClicked = this.onMapClicked.bind(this);
+    // this.onListClick = this.onListClick.bind(this);
 
   mapReady = (props,map) => {
     console.log("map ready");
@@ -35,11 +46,10 @@ export class MapContainer extends Component {
 
     let markerProps = [];
 
-    console.log(locations);
-
-    let markers = locations.map((cat) => {
+    let markers = locations.map((cat,i) => {
 
       let selectedCat = {
+        i,
         name: cat.name,
         breed: cat.breed,
         sex: cat.sex,
@@ -73,17 +83,7 @@ export class MapContainer extends Component {
     console.log(this.state.selectedCat);
   };
 
-  // listItemClicked = (e) => {
-  //   console.log(e.currentTarget.id);
-  //   console.log("list item clicked");
-
-  //   let match = this.googleMarkers.find(function(googleMarker){
-  //     return googleMarker.key === e.currentTarget.id;
-  //   });
-
-  //   console.log(match);
-
-    // this.props.onMarkerClick(match.props,match,e);
+  
 
     onMapClicked = (props) => {
       if (this.state.showingInfoWindow) {
@@ -99,7 +99,6 @@ export class MapContainer extends Component {
     render() {
 
       let scProps = this.state.selectedCat;
-      console.log(scProps);
   
       return (
       <div className="mapcontainer">
@@ -150,6 +149,9 @@ export class MapContainer extends Component {
               selectedCat={this.state.selectedCat}
               showingInfoWindow={this.state.showingInfoWindow}
               listItemClicked={this.listItemClicked}
+              markerProps={this.state.markerProps}
+              onMarkerClick={this.onMarkerClick}
+              markers={this.state.markers}
             />
         </div>
       

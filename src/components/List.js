@@ -3,6 +3,17 @@ import Listing from '../components/Listing.js';
 
 class List extends Component {
 
+  listItemClicked = (e) => {    
+
+    let scProps = this.props.markerProps.find(function(selectedCat){
+        return selectedCat.key.toString() === e.currentTarget.id
+      });
+
+    let scMarker = this.props.markers[scProps.i];
+
+    this.props.onMarkerClick(scProps, scMarker,e);
+  }
+
 
   render() {
     const listings = this.props.displayMarkers.map((cat) =>
@@ -12,7 +23,7 @@ class List extends Component {
             key={cat.id}
             breed={cat.breed}
             sex={cat.sex}
-            listItemClicked={this.props.listItemClicked}
+            listItemClicked={this.listItemClicked}
           />
     );
 
