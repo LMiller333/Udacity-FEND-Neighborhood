@@ -10,8 +10,8 @@ This app was developed as part of the Udacity Front-End Develompent Nanodegree p
 2. Clone this repository.
 3. Install project dependencies using npm install
 4. Add your API keys to an `.env` file, like this:
-`REACT_APP_GOOGLE_API_KEY=AIzaSyDOhVT-qBp1Nunga4g9z2w8i8nhc4ZQd24`
-`REACT_APP_PETFINDER_API_KEY=d751650355e08556a03f56b5ee62aeb7`
+`REACT_APP_GOOGLE_API_KEY=your API key here`
+`REACT_APP_PETFINDER_API_KEY=your API key here`
 ...or add your keys directly to the project (PetFinder key goes in`App.js` and Google Maps key goes in `MapContainer.js`) 
 5. Start the server with npm start
 
