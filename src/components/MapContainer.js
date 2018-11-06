@@ -4,34 +4,32 @@ import InfoWindowDetail from './InfoWindowDetail.js';
 import List from './List.js';
 import Search from './Search.js';
 import LoadingScreen from './LoadingScreen';
-
-
  
 export class MapContainer extends Component {
 
-  //This is where all the magic happens.
+  //This component is where all the magic happens.
 
   constructor(props){
     super(props);
     this.state = {
       map: null,
-      markers: [],
-      markerProps: [],
-      selectedCat: null,
-      activeMarker: null,
-      showingInfoWindow: false,
-      displayMarkers: this.props.locations,
-      query: "",
-      noMarkerMsg: []
+      markers: [], //Represents the actual Google marker objects
+      markerProps: [], //Represents the properties of all the markers, obtained from SOT locations
+      selectedCat: null, //Represents props for the selected marker (cat)
+      activeMarker: null, //Represents the marker object for the active marker (cat)
+      showingInfoWindow: false, //State of InfoWindow
+      displayMarkers: this.props.locations, //This is a filtered array of markers/items that should be displayed based on the query
+      query: "", //Self explanatory
+      noMarkerMsg: [] //Message displayed if no markers being displayed
     }
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
     this.updateQuery = this.updateQuery.bind(this);
   }
 
-
-  //Shout out to Doug Brown (Udacity Project Coach) for the walkthrough, which helped me refactor my Markers
+  //Shout out to Doug Brown (Udacity Project Coach) for the P7 walkthrough, which helped me refactor my Markers
   //so that they could be more accessible by other DOM elements (e.g., list items)
+  //Here's the link: https://www.youtube.com/watch?v=NVAVLCJwAAo&feature=youtu.be
 
   //This sets the map state and runs the updateMarkers function on map ready.
 
@@ -117,113 +115,120 @@ export class MapContainer extends Component {
       showingInfoWindow: false,
       activeMarker: null
       })
-  }
+    } 
   }
 
-    updateQuery = (query) => {
-      let queryLc = query.toLowerCase();
-      this.setState({
-        query: query,
-        displayMarkers:this.props.locations,
-        noMarkerMsg: []
+  //This updates the query state and displayMarkers list each type the text in the input field is changed. It also sets the noMarkerMsg
+  //state if no markers are displayed.
+
+  updateQuery = (query) => {
+    let queryLc = query.toLowerCase();
+    this.setState({
+      query: query,
+      displayMarkers:this.props.locations,
+      noMarkerMsg: []
+    });
+
+    //TODO: Add male/female filter so that "male" doesn't bring up all results
+
+    if (query){
+      let displayMarkers = this.props.locations.filter((cat) => {
+        return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
       });
-  
-      //TODO: Add male/female filter so that "male" doesn't bring up all results
-  
-      if (query){
-        let displayMarkers = this.props.locations.filter((cat) => {
-          return cat.name.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) || cat.breed.toLowerCase().includes(queryLc) 
-        });
 
-        if (displayMarkers.length === 0){
-          console.log("no markers");
-          let noMarkerMsg = `There are no cats that meet your search`;
-          this.setState({noMarkerMsg: noMarkerMsg});
+      if (displayMarkers.length === 0){
+        console.log("no markers");
+        let noMarkerMsg = `There are no cats that meet your search`;
+        this.setState({noMarkerMsg: noMarkerMsg});
         }
 
         this.setState({displayMarkers: displayMarkers}, 
           () => {
             this.updateMarkers(this.state.displayMarkers);
         });
-      }
-      else {
-        this.setState({displayMarkers: this.props.locations}, 
-          () => {
-            this.updateMarkers(this.props.locations);
-        });
-      }
-  
-      }
+        }
+
+    else {
+      this.setState({displayMarkers: this.props.locations}, 
+        () => {
+          this.updateMarkers(this.props.locations);
+      });
+    }
+
+  }
    
   
-    render() {
+  render() {
 
-      let scProps = this.state.selectedCat;
-  
-      return (
-      <div className="mapcontainer">
-        <div className="page-title">
-          <h1>Neighborhood Cat Map</h1>
-        </div>
+    //These are the main components here (Search, Map, InfoWindow, and List)
 
-        <Search
-            query={this.state.query}
-            updateQuery={this.updateQuery}/>
-        
-        <div className="googleMap">
-          <Map
-          role="application"
-          aria-label="map"
-          google={this.props.google}
-          initialCenter={{
-            lat: 42.263210,
-            lng: -83.739470
-          }}
-          zoom={16}
-          onClick={this.onMapClicked}
-          onReady={this.mapReady}
-          >
-    
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}
-              showingInfoWindow={this.state.showingInfoWindow}
-              activeMarker={this.state.activeMarker}
-              onClose={this.onInfoWindowClose}
-              >
-                <InfoWindowDetail
-                sc={scProps}
-                matchingCats={this.props.matchingCats}
-                >
-                
-                </InfoWindowDetail>
+    let scProps = this.state.selectedCat;
 
-            </InfoWindow>
-    
-          </Map>
-        </div>
-
-        <div className="list">
-          <List
-              displayMarkers={this.state.displayMarkers}
-              activeMarker={this.state.activeMarker}
-              selectedCat={this.state.selectedCat}
-              showingInfoWindow={this.state.showingInfoWindow}
-              listItemClicked={this.listItemClicked}
-              markerProps={this.state.markerProps}
-              onMarkerClick={this.onMarkerClick}
-              markers={this.state.markers}
-              noMarkerMsg={this.state.noMarkerMsg}
-              locations={this.props.locations}
-            />
-        </div>
-      
+    return (
+    <div className="mapcontainer">
+      <div className="page-title">
+        <h1>Neighborhood Cat Map</h1>
       </div>
-      );
-    }
+
+      <Search
+          query={this.state.query}
+          updateQuery={this.updateQuery}/>
+      
+      <div className="googleMap">
+        <Map
+        role="application"
+        aria-label="map"
+        google={this.props.google}
+        initialCenter={{
+          lat: 42.263210,
+          lng: -83.739470
+        }}
+        zoom={16}
+        onClick={this.onMapClicked}
+        onReady={this.mapReady}
+        >
+  
+          <InfoWindow
+            marker={this.state.activeMarker}
+            visible={this.state.showingInfoWindow}
+            showingInfoWindow={this.state.showingInfoWindow}
+            activeMarker={this.state.activeMarker}
+            onClose={this.onInfoWindowClose}
+            >
+              <InfoWindowDetail
+              sc={scProps}
+              matchingCats={this.props.matchingCats}
+              >
+              
+              </InfoWindowDetail>
+
+          </InfoWindow>
+  
+        </Map>
+      </div>
+
+      <div className="list">
+        <List
+            displayMarkers={this.state.displayMarkers}
+            activeMarker={this.state.activeMarker}
+            selectedCat={this.state.selectedCat}
+            showingInfoWindow={this.state.showingInfoWindow}
+            listItemClicked={this.listItemClicked}
+            markerProps={this.state.markerProps}
+            onMarkerClick={this.onMarkerClick}
+            markers={this.state.markers}
+            noMarkerMsg={this.state.noMarkerMsg}
+            locations={this.props.locations}
+          />
+      </div>
+    
+    </div>
+    );
   }
 
- 
+}
+
+//This is where you can plug in your Google API Key!
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_API_KEY, LoadingContainer: LoadingScreen
 })(MapContainer)

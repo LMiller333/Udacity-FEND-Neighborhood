@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
  class Listing extends Component {
 
-
+  //No comments necessary, I hope
 
   render() {
     return (

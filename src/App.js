@@ -79,6 +79,9 @@ class App extends Component {
 
   };
 
+  //Renders a container for the app
+  //These are the two "source of truth" states being passed down as props
+
   render() {
     return (
       <div className="App">

@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import Search from './Search.js';
-
-//TODO: Add animation on marker click
-//TODO: Add NoMapDisplay error handling
-
  
 export class LoadingScreen extends Component {
 
-
+  //This component includes the loading screen and error screen, in the event that
+  //Google is not responding.
 
   state = {
     showErrorScreen: false,
     delay: null
   }
 
-  //The timeout was Doug Brown's suggestion! (see walkthrough)
+  //The timeout below was Doug Brown's suggestion! (See his incredible P7 walkthrough at: https://www.youtube.com/watch?v=NVAVLCJwAAo&feature=youtu.be)
 
   componentDidMount = () => {
     let delay = window.setTimeout(this.showErrorScreen, 1500);
