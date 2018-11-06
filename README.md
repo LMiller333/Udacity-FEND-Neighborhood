@@ -7,11 +7,14 @@
 *Graceful handling of errors, with partial loading, friendly & plain language user-facing error messages, and a Service Worker for offline functionality
 *Accessibility features such as semantic HTML (and aria when needed), WCAG AA compliant color contrast, and alternative text that actually adds value (e.g., describing what the cat is doing in the photo, to show personality)
 
+##APIs
+This app uses the [Google Maps API](https://developers.google.com/maps/documentation/) and the [PetFinder API](https://www.petfinder.com/developers/api-docs). 
+
 ##Packages, Libraries, Dependencies
-*This is a React app built using CreateReactApp. 
-*The Google API Wrapper was provided by google-maps-react.
-*Font icons courtesy of the react-fontawesome library.
-*I used jQuery $.ajax method for my third-party AJAX API calls. 
+*This is a [React](https://reactjs.org/) app built using [Create React App](https://reactjs.org/docs/create-a-new-react-app.html) 
+*The Google API Wrapper was provided by [google-maps-react](https://github.com/fullstackreact/google-maps-react).
+*Font icons courtesy of the [React Font Awesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react) component.
+*I used [jQuery](https://jquery.com/) $.ajax method for my third-party AJAX API calls. 
 
 ##Install
 1. Get your API keys! You will need Google Maps and PetFinder. 
