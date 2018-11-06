@@ -3,12 +3,13 @@ import {Map, GoogleApiWrapper, InfoWindow} from 'google-maps-react';
 import InfoWindowDetail from './InfoWindowDetail.js';
 import List from './List.js';
 import Search from './Search.js';
+import LoadingScreen from './LoadingScreen';
 
-//TODO: Add animation on marker click
-//TODO: Add NoMapDisplay error handling
 
  
 export class MapContainer extends Component {
+
+  //This is where all the magic happens.
 
   constructor(props){
     super(props);
@@ -29,12 +30,19 @@ export class MapContainer extends Component {
   }
 
 
-//doug brown
+  //Shout out to Doug Brown (Udacity Project Coach) for the walkthrough, which helped me refactor my Markers
+  //so that they could be more accessible by other DOM elements (e.g., list items)
+
+  //This sets the map state and runs the updateMarkers function on map ready.
 
   mapReady = (props,map) => {
     this.setState({map});
     this.updateMarkers(this.props.locations);
   };
+
+  //This updates the markers based on the locations param. On initial load and/or if no query
+  //is entered, then the full location set is passed to updateMarkers.
+  //If there is a query (see below), then only the displayMarkers are passed to updateMarkers.
 
   updateMarkers = (locations) => {
 
@@ -76,36 +84,41 @@ export class MapContainer extends Component {
 
   };
 
+  //This updates the states when a marker is clicked. The list items also use this function.
+
   onMarkerClick(props,marker,e){
     this.setState({
       selectedCat: props,
       activeMarker: marker,
       showingInfoWindow: true
     });
-
-
-
+    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+          setTimeout(() => {
+            marker.setAnimation(null);
+          }, 1000);
   };
 
-  
+  //This reverts states when the map is clicked. 
 
-    onMapClicked = (props) => {
-      if (this.state.showingInfoWindow) {
-          this.setState({
-          showingInfoWindow: false,
-          activeMarker: null
-          })
-      }
-    };
-
-    onInfoWindowClose = (props) =>{
-      if (this.state.showingInfoWindow) {
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
         this.setState({
         showingInfoWindow: false,
         activeMarker: null
         })
     }
-    }
+  };
+
+  //This reverts states when InfoWindow is closed. 
+
+  onInfoWindowClose = (props) =>{
+    if (this.state.showingInfoWindow) {
+      this.setState({
+      showingInfoWindow: false,
+      activeMarker: null
+      })
+  }
+  }
 
     updateQuery = (query) => {
       let queryLc = query.toLowerCase();
@@ -209,7 +222,8 @@ export class MapContainer extends Component {
       );
     }
   }
+
  
 export default GoogleApiWrapper({
-  apiKey: process.env.REACT_APP_GOOGLE_API_KEY
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY, LoadingContainer: LoadingScreen
 })(MapContainer)

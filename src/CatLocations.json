@@ -56,16 +56,16 @@
       },
       {
         "id":5,
-        "name": "Josie",
-        "breed":"Tortoiseshell",
+        "name": "Paisley",
+        "breed":"Calico",
         "sex":"F",
-        "displaysex":"Male",
+        "displaysex":"Female",
         "position": {
           "lat":  42.263210,
           "lng": -83.739470
         },
-        "imgalt": "Something about Josie",
-        "img": "https://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg"
+        "imgalt": "Paisley with her long Calico fur playing with a cat toy",
+        "img": "https://lh3.googleusercontent.com/OGSXjB_z_zyOWLxgrLD4AlPB6InQajN6iqjGEtN57UcjgawBQAz-ZqlJ2RAtRg1Bt_J0WClmSmJ7VVvOSAV4ixCEJLizWrK3ZRpEROXTf0FxbiF7iws6Tf_G41_bTAd4pdGKXk9qfIxAoVnqFNKT6iPFcgNATjgQQ04ZO9Q4oywT_LxSFywaiPgUju31MjbqtKInNnXQPgsDiCl4NJhELtxhmgUcIX_X9sSg5cfW2cz5ObGgTmuQHSiCEwNrxJ5jyUc9tkdBbxoqvWwBKT70ew492icKvT7uGR7XPBYvX9nHOHCheN-hIPoojcRH8nayEyp4lC0-yyrDuApU80ipW8ST8CNMnUgYcuyd4I7CAG4blV-f3btHfYJ8u2-fRMB4ZjHwoUI72EUBujOG6mNYfyUzTgKpMNTE4uRAJUZz14jnPeLFpCi69KCFdLuaWTAxrqF42oa4gpawoh92Uqebc5EavZ4UZVzyu7WVpD-kdWu1KsYXRHvAH-9kQRItPpdpQKpRuSGT8NAelhp97WpJXdGLUPPVJW8t7U3wBVI8U9y-xhlIe4y-8IaNRCjj2nu2t9z8far4hjRZWmQguUA6pq03cEjCxMAGKykm4AgiqUE0B4gQXs9NuWC5aq0J1-sYuBIyfmvSBCltyH0MEaLZd2jG7y8EtgLa1_95Glg9e38vxh15NZoNUF_RA5W22tiugZzET6W51WrwHfdxdQ=w1392-h1122-no"
       },
       {
         "id":6,
@@ -77,8 +77,8 @@
           "lat": 42.261945,
           "lng": -83.741500
         },
-        "imgalt": "Something about Walter",
-        "img": "https://www.catster.com/wp-content/uploads/2017/09/A-tabby-cat-with-an-ID-collar-on.jpg"
+        "imgalt": "Walter getting some head and back scratchies from his friendly neighbors",
+        "img": "https://lh3.googleusercontent.com/hilfNQPFCrOSS6YORlFuc6PldyA6p5Vjc-YdbkvXR13xgMXOwXoDMhLQD-Z9B2SF78tNUH8Z6vwIoXFJBGtrgDnAFmbbVVtRb89fKi1iWcNrcpa08AeY0Njqbulr7IMIiCGAalZG5rUNhZInTNeCdCKnoKAOyFrc-2kAbuRKVSFPwaIncfYEImXf4phoxBl6Sr_DmpNBZIy9JW5q6Q6nbYBeLmWyZJkLm4w1ZO_B5nQfOIcweE-TseJ4Hozgq7_6J2x11-qhOqRPxT6VgeKVQFC6OSdOkRH3QShns-6ILqxzHhC8q4rV6XVK2Y2elVn8hFxaAy-OULYeWPHw_hJiko6iLgT7uXWOiEwrERyJ7YglJy0wtd8Usx9JgTAXU7tna5XSrxRRfyA0cX-LwWzrKllcMIBWS-iP23XJ3Yr1K-93Xy6C5cfe0xN6JZdUVjwaR1H7V9YTnr7M-tNsEqHDJ7DW6fvJThnBdgAQxxJhJqLiJ9a3EXec6bSSED4_PNlGEShzI2VXgmxtY9UvU_CAcHKQUNBzFFo0hDTYatbVjELMT_WZldcohQCQxW0NVTsAFtw8OoDaMzTsjBdTHXzc833LkcnnXkCwkcKAqyIHb_s6xcw_VYYu7TWZxDlS0vt4HM2CbHDvRN7hvZIp2r9xURzHXzKXvUAo30Bv0pwwqvH3To1Ndrb8Rjr5b00eL1AanIc6FM9uGxm8F0XceA=w768-h532-no"
       }
     ]
   }

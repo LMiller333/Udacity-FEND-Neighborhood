@@ -4,9 +4,10 @@ import MapContainer from './components/MapContainer';
 import CatLocations from './CatLocations.json';
 import $ from 'jquery';
 
-//TODO: Update cat photos in CatLocations.json
-
 class App extends Component {
+
+  //This sets two states: one with the data from the CatLocations.json and one empty array where
+  //I'll store the data for PetFinder cats that "match" the neighborhood cats
 
   constructor(){
     super();
@@ -20,6 +21,13 @@ class App extends Component {
     document.title = "Neighborhood Cat Map"
     this.getMatchingCats();
   }
+
+  //This sends a request to the PetFinder API for each cat. It gets a PetFinder adoptable cat
+  //that meets a certain set of criteria (same breed and sex as the neighborhood cat). It creates a new array
+  //with the matching cat data and text to display. 
+  
+  //In order to permit cross-domain requests, I had to use their JSONP offering in order to pass a callback.
+  // $.ajax was most amenable to this type of request.
 
   getMatchingCats =  () => {
 
@@ -68,18 +76,10 @@ class App extends Component {
       });
 
     });
+
   };
 
- 
-    
-  
- 
-  
-
   render() {
-
-    
-
     return (
       <div className="App">
         <MapContainer

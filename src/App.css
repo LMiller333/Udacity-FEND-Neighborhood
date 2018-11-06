@@ -127,6 +127,10 @@ p{
   border: 0;
 }
 
+.errorMsg{
+  
+}
+
 
 @media only screen and (max-width: 768px) {
   .mapcontainer{
